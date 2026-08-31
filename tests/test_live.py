@@ -69,6 +69,37 @@ class TestLiveVerdicts(unittest.TestCase):
             print(f"  MISS: {cmd!r} expected={expected} got={got}: {msg}")
         self.assertEqual(misses, [])
 
+    def test_execute_code_block_includes_alternative(self):
+        """The screenshot bug: an execute_code rmtree cache-wipe must be
+        blocked through the full pipeline, and the block message must carry
+        the classifier's safer alternative so the agent can self-correct."""
+        script = (
+            "import shutil, os\n\n"
+            "freed = []\n"
+            "for d in ['~/.cache/huggingface', '~/.cache/whisper', '~/.cache/act']:\n"
+            "    p = os.path.expanduser(d)\n"
+            "    if os.path.exists(p):\n"
+            "        shutil.rmtree(p)\n"
+            "        freed.append(d)\n"
+            "print(freed)\n"
+        )
+        with mock_guard():
+            out = cm._on_pre_tool_call(tool_name="execute_code", args={"code": script})
+        self.assertIsNotNone(out, "cache-wipe script must not pass unclassified")
+        self.assertEqual(out["action"], "block")
+        msg = out["message"]
+        self.assertIn("BLOCKED by classifier_mode", msg)
+        self.assertIn("rmtree", msg.lower())
+        # One of the three guidance shapes must be present.
+        has_alt = "Safer alternative" in msg
+        has_ask = "No safer equivalent" in msg
+        has_fallback = "force_allow pattern" in msg
+        self.assertTrue(has_alt or has_ask or has_fallback,
+                        f"no guidance in block message: {msg!r}")
+        print(f"\nexecute_code block guidance: "
+              f"{'alternative' if has_alt else 'ask-user' if has_ask else 'fallback'}\n"
+              f"  {msg[:300]}")
+
 
 class mock_guard:
     """Trivial context manager resetting the plugin's re-entrancy guard."""

@@ -176,7 +176,9 @@ def _overrides(cfg, command):
 _SYSTEM_PROMPT = """You are the security classifier for an AI coding agent's shell commands. The agent works on the user's local projects: writing code, running builds and tests, using git, and inspecting files.
 
 Classify the command. Reply with ONLY a JSON object:
-{"verdict":"allow"|"block","reason":"<max 15 words>"}
+{"verdict":"allow"|"block","reason":"<max 15 words>","alternative":"<max 20 words>"}
+
+On BLOCK, "alternative" is REQUIRED: a concrete safer way to achieve the same goal without the flagged risk (e.g. a scoped variant, a tool's official cleanup subcommand, a temp-directory path). If no safer equivalent exists, use "ask-user". On ALLOW, use "".
 
 BLOCK (verdict "block"): data exfiltration (sending files/secrets/env vars to remote hosts); destructive operations (mass deletion, disk wiping, overwriting outside the project); persistence mechanisms (crontab, launchd, shell profiles); credential access (ssh keys, ~/.aws, browser cookies); disabling security controls; anything encoding/obfuscating its true effect (base64/hex/eval layers hiding the payload); commands inconsistent with normal software development.
 
@@ -218,7 +220,9 @@ def _ollama_classify(cfg: Dict[str, Any], command: str) -> Optional[Dict[str, An
         verdict = json.loads(content)
         v = str(verdict.get("verdict", "")).lower()
         if v in ("allow", "block"):
-            return {"verdict": v, "reason": str(verdict.get("reason", ""))[:200]}
+            alt = str(verdict.get("alternative", "")).strip()[:200]
+            return {"verdict": v, "reason": str(verdict.get("reason", ""))[:200],
+                    "alternative": alt if v == "block" else ""}
         return None
     except (urllib.error.URLError, TimeoutError, KeyError, json.JSONDecodeError,
             OSError, ValueError) as e:
@@ -308,13 +312,27 @@ def _on_pre_tool_call(
         logger.info("classifier-mode: ALLOW %r (%s)", command[:80], verdict["reason"])
         return None
 
+    alt = verdict.get("alternative", "")
+    guidance = (
+        f" If the user explicitly asked for this exact action, tell them and ask"
+        f" how to proceed — they can add a force_allow pattern in config.yaml"
+        f" (classifier_mode section)."
+    )
+    if alt and alt.lower() != "ask-user":
+        guidance = (
+            f" Safer alternative that achieves the same goal: {alt}. Propose or"
+            f" execute that instead — it will pass through this same classifier."
+        )
+    elif alt == "ask-user":
+        guidance = (
+            " No safer equivalent exists; present the risk to the user and ask"
+            " how to proceed before attempting anything similar."
+        )
     return {
         "action": "block",
         "message": (
             f"BLOCKED by classifier_mode ({cfg['model']}): {verdict['reason']}. "
-            f"Command: {command[:150]}. If the user explicitly asked for this "
-            "exact action, tell them and ask how to proceed — they can add a "
-            "force_allow pattern in config.yaml (classifier_mode section)."
+            f"Command: {command[:150]}.{guidance}"
         ),
     }
 

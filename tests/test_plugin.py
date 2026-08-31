@@ -102,10 +102,11 @@ class TestOllamaParsing(unittest.TestCase):
     def test_valid_verdict(self):
         import json as _json
         body = _json.dumps(
-            {"message": {"content": '{"verdict":"block","reason":"exfil"}'}}
+            {"message": {"content": '{"verdict":"block","reason":"exfil","alternative":"use a scoped path"}'}}
         ).encode()
         got = self._with_response(body)
-        self.assertEqual(got, {"verdict": "block", "reason": "exfil"})
+        self.assertEqual(got, {"verdict": "block", "reason": "exfil",
+                               "alternative": "use a scoped path"})
 
     def test_invalid_verdict_value_returns_none(self):
         import json as _json
