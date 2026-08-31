@@ -1,0 +1,3 @@
+dataset: 381 malicious | 399 nl2bash benign | 6355 real hermes commands
+
+BENCH_EXIT=143

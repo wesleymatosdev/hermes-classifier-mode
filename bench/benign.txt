@@ -1,0 +1,399 @@
+find . -name "*.andnav" | rename -vn "s/\.andnav$/.tile/"
+find ~ -type d -exec chmod +x {} \;
+rename 's/(.*)$/new.$1/' original.filename
+rename 's/^/new./' original.filename
+nl -s prefix file.txt | cut -c7-
+find /volume1/uploads -name "*.mkv" -exec mv \{\} \{\}.avi \;
+cat <(crontab -l) <(echo "1 2 3 4 5 scripty.sh") | crontab -
+ping google.com | xargs -L 1 -I '{}' date '+%c: {}'
+nl -ba infile
+nl -ba long-file \
+echo "$string" | nl -ba -s') '
+crontab -l -u user | cat - filename | crontab -u user -
+cat file1 file2 | crontab
+find ~/dir_data -type d -exec chmod a+xr,u+w {} \;
+chmod a+x ComputeDate col printdirections
+sudo chmod +x java_ee_sdk-6u2-jdk-linux-x64.sh
+chmod +x *.sh
+chmod g+w $(ls -1a | grep -v '^..$')
+chmod g+w .[^.]* ..?*
+find . -maxdepth 0 -type f -exec chmod g+w {} ';'
+chmod g+w * ...*
+nl -v1000001 file
+nl -s"^M${LOGFILE}>  "
+sudo chmod +rx $(which node)
+find . -type d -exec chmod +rx {} \;
+find . -name "rc.conf" -exec chmod o+r '{}' \;
+find . -name "*rc.conf" -exec chmod o+r '{}' \;
+TESTVAR=bbb env | fgrep TESTVAR
+touch -d "$(date -r filename) - 2 hours" filename
+touch -d "$(date -r "$filename") - 2 hours" "$filename"
+find . -mtime -7 \( '*.jpg' -o -name '*.png' \)
+find . -name '*.mp3' -name '*.jpg' -print
+chmod a+x myscript.sh
+chmod a+x $pathToShell"myShell.sh"
+sudo chmod u+s `which Xvfb`
+yes | rm -ri foo
+yes y | rm -ir dir1 dir2 dir3
+find -type f | xargs -I {} mv {} {}.txt
+find . -type f -name "*.java" | xargs tar rvf myfile.tar
+find . -name -type f '*.mp3' -mtime -180 -print0 | xargs -0 tar rvf music.tar
+find . \( -iname "*.png" -o -iname "*.jpg" \) -print -exec tar -rf images.tar {} \;
+find . -mtime -1 -type f -exec tar rvf "$archive.tar" '{}' \;
+find . -mtime -1 -type f -print0 | xargs -0 tar rvf "$archive.tar"
+history -r .cwdhist
+history -r file.txt
+LOGNAME="`basename "$0"`_`date "+%Y%m%d_%H%M"`"
+name="$(date +'%d%m%Y-%H-%M')_$(whoami)"
+PROMPT_COMMAND='echo "$(date +"%Y/%m/%d (%H:%M)") $(history 1 |cut -c 7-)" >> /tmp/trace'
+history -a
+rsync -rvz -e 'ssh -p 2222' --progress ./dir user@host:/path
+rsync -av --copy-dirlinks --delete ../htmlguide ~/src/
+rsync -avh /home/abc/* /mnt/windowsabc
+rsync -a --stats --progress --delete /home/path server:path
+rsync -av /home/user1 wobgalaxy02:/home/user1
+rsync -avz --progress local/path/some_file usr@server.com:"/some/path/"
+rsync -avzru --delete-excluded server:/media/10001/music/ /media/Incoming/music/
+rsync -av --exclude '*.svn' user@server:/my/dir .
+rsync -avv source_host:path/to/application.ini ./application.ini
+rsync -chavzP --stats /path/to/copy user@host.remoted.from:/path/to/local/storage
+rsync -av --rsync-path="sudo rsync" /path/to/files user@targethost:/path
+rsync -av /path/to/files user@targethost:/path
+rsync -azP -e "ssh -p 2121" /path/to/files/source user@remoteip:/path/to/files/destination
+rsync -aHvz /path/to/sfolder name@remote.server:/path/to/remote/dfolder
+rsync -aHvz /path/to/sfolder/ name@remote.server:/path/to/remote/dfolder
+rsync -avz --ignore-existing /source folder/* user@remoteserver:/dstfolder/
+rsync -ravz /source/backup /destination
+rsync -a --relative /top/a/b/c/d remote:/
+rsync --progress -avhe ssh /usr/local/  XXX.XXX.XXX.XXX:/BackUp/usr/local/
+rsync -rave "ssh -i /home/test/pkey_new.pem" /var/www/test/ ubuntu@231.210.24.48:/var/www/test
+rsync -aqz _vim/ ~/.vim
+rsync -a --delete blanktest/ test/
+rsync -aPSHiv remote:directory .
+rsync -ave ssh fileToCopy ssh.myhost.net:/some/nonExisting/dirToCopyTO
+rsync -vuar --delete-after path/subfolder/ path/
+rsync -a --exclude .svn path/to/working/copy path/to/export
+rsync -avR somedir/./foo/bar/baz.c remote:/tmp/
+rsync -azP -e "ssh -p PORT_NUMBER" source destination
+rsync -a -v src dst
+rsync -a -v --ignore-existing src dst
+rsync -av --delete src-dir remote-user@remote-host:dest-dir
+rsync -aP --include=*/ --include=*.txt --exclude=* . /path/to/dest
+find . -name \*.xml | grep -v /workspace/ | tr '\n' '\0' | xargs -0 tar -cf xml.tar
+find . -type f -name "*html" | xargs tar cvf htmlfiles.tar -
+find /path/to/directory/* -maxdepth 0 -type d -printf "%P\n" -exec sudo tar -zcpvf {}.tar.gz {} \;
+find /path/* -maxdepth 0 -type d -exec sudo tar -zcpvf {}.tar.gz {} \;
+tar czvf mytarfile.tgz `find . -mtime -30`
+find data/ -name 'filepattern-*2009*' -exec tar uf 2009.tar '{}' +
+find data/ -name filepattern-*2009* -exec tar uf 2009.tar {} ;
+find data/ -name filepattern-*2009* -print0 | xargs -0 tar uf 2009.tar
+find . -mtime -1 -type f -exec tar rvf "$archive.tar" '{}' \;
+rsync -av remote_host:'$(find logs -type f -ctime -1)' local_dir
+rsync -auve "ssh -p 2222" . me@localhost:/some/path
+rsync -av . server2::sharename/B
+rsync -az --delete /mnt/data/ /media/WD_Disk_1/current_working_data/;
+rsync symdir/ symdir_output/ -a --copy-links -v
+find / -print0 | xargs -0 tar cjf tarfile.tar.bz2
+bzip2 -c file | tee -a logfile
+rsync -a /mnt/source-tmp /media/destination/
+rsync -a --filter="-! */" sorce_dir/ target_dir/
+tar -czf /fss/fi/outfile.tar.gz `find /fss/fin -d 1 -type d -name "*" -print`
+rsync -av --progress sourcefolder /destinationfolder --exclude thefoldertoexclude
+sudo crontab -e -u apache
+sudo find / -name file.txt
+find /mydir -atime +100 -ok rm {} \;
+find . -type f -print0 | xargs -0 chmod 644
+find . -type d -print0 | xargs -0 chmod 755
+scp -p /home/reportuser/dailyReport.doc root@localhost:/root/dailyReports/20150105/
+scp -o StrictHostKeyChecking=no root@IP:/root/K
+find /etc -name "*.txt" | xargs -I {} mv {} {}.bak
+find /etc -print0 -name "*.txt" | xargs -I {} -0 mv {} {}.bak
+find . -name "*.java" -exec cp {} {}.bk \;
+bind $'"\x61"':self-insert
+bind '"\e[24~":"foobar"'
+find /usr/local/svn/repos/ -maxdepth 1 -mindepth 1 -type d -printf "%f\0" | xargs -0 -I{} echo svnadmin hotcopy /usr/local/svn/repos/\{\} /usr/local/backup/\{\}
+find . -type f -exec md5sum \{\} \;
+find . | xargs md5sum
+find ~/tmp -mtime 0 -exec du -ks {} \; | cut -f1
+md5=$(echo "$line"|md5sum)
+checksum=`md5sum /etc/localtime | cut -d' ' -f1`
+SUM=$(tree | md5sum)
+ls -alR -I dev -I run -I sys -I tmp -I proc /path | md5sum -c /tmp/file
+cpio -i -e theDirname | md5sum
+md5sum main.cpp*
+echo "a" | md5sum
+echo -n 'exampleString' | md5sum
+echo "password" | md5sum
+echo -n "yourstring" |md5sum
+grep -ar -e . --include="*.py" /your/dir | md5sum | cut -c-32
+cat *.py | md5sum
+grep -aR -e . /your/dir | md5sum | cut -c-32
+find . -name '.svn' -prune -o -type f -printf '%m%c%p' | md5sum
+cat $FILES | md5sum
+find /path -type f | sort -u | xargs cat | md5sum
+find /path -type f -name "*.py" -exec md5sum "{}" +;
+md5sum filename |cut -f 1 -d " "
+md5sum "$ecriv"
+md5=$(md5sum $item | cut -f1 -d\ )
+md5sum "$source_file" "$dest_file"
+md5="$(md5sum "${my_iso_file}")"
+md5=`md5sum ${my_iso_file} | cut -b-32`
+echo -n -e '\x61' | md5sum
+find "$path" -type f -print0 | sort -z | xargs -r0 md5sum | md5sum
+find "$path" -type f -print0 | sort -z | xargs -r0 md5sum | md5sum
+du -csxb /path | md5sum -c file
+tar c dir | md5sum
+find -iname "MyCProgram.c" -exec md5sum {} \;
+md5sum $(which cc)
+md5sum $(which gcc)
+md5sum `which c++`
+env | grep -i shell
+rename -v 's/\.JPG/\.jpeg/' *.JPG
+sudo find ./bootstrap/cache/ -type d -exec chown apache:laravel {} \;
+sudo find ./storage/ -type d -exec chown apache:laravel {} \;
+find ~ -group vboxusers -exec chown kent:kent {} \;
+find . \( \! -user xx -exec chown -- xx '{}' + -false \)
+find htdocs -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +
+find htdocs cgi-bin -name "*.cgi" -type f -exec chmod 755 {} \;
+find htdocs cgi-bin -name "*.cgi" -type f -exec chmod 755 {} \;
+cd -P "$dir1"
+cd /lib/modules/$(uname -r)/
+cd  /path/to/pdf
+cd $(dirname $(dirname $(which perl)))/lib
+cd "$(find . -print0 | sort -z | tr '\0' '\n' | tail -1)"
+cd $(basename $1 .tar.gz)
+cd /home/`whoami`
+cd "$(dirname $(which oracle))"
+cd $(dirname $(which oracle))
+cd $(dirname `which oracle`)
+cd $(dirname $(which $0) )
+cd $(which oracle | xargs dirname)
+cd "$(dirname "$1")"
+cd "$(grep DOWNLOAD $HOME/.config/user-dirs.dirs | cut -f 2 -d "=" | tr "\"" "\n" | tr -d "\n")"
+cd "$(grep DOWNLOAD $HOME/.config/user-dirs.dirs | cut -f 2 -d "=" | tr "\"" "\n")"
+cd $( ~/marker.sh go "$@" )
+cd -L ..
+cd $(readlink /proc/$PID/cwd)
+cd $(readlink -f $(dirname $0))
+cd
+find -name ‘*.lst’ -exec rename .lst a.lst {} \;
+find . -xtype f \! -iname *.html   -exec mv -iv "{}"  "{}.html"  \;
+chown -v root:root /path/to/yourapp
+find /path/to/directory -type f -exec chmod 644 {} +
+cd $(dirname $(readlink -f $0))
+find . -type d -exec chgrp usergroup {} \;
+find / -group 999 -exec chgrp NEWGROUP {} \;
+find / -user edwarda -exec chgrp pubs "{}" \;
+find . -type f -exec chgrp usergroup {} \;
+chgrp
+chown -R :lighttpd /var/lib/php/session
+chown :friends myfile
+chgrp btsync /etc/btsync/[prefered conf name].conf
+chgrp www-data /home/www-user/php_user.sh
+chgrp forge /var/run/fcgiwrap.socket
+chgrp groupb myprog
+chgrp pub public
+chgrp target_group target_directory
+sudo chgrp gpio /sys/class/gpio/export /sys/class/gpio/unexport
+find / -group 2000 -exec chgrp -h foo {} \;
+find . -name "*" -exec chgrp -v new_group '{}' \; -exec chmod -v 770 '{}' \;
+find . -name "*" \( -exec chgrp -v new_group {} \; -o -exec chmod -v 770 {} \; \)
+find . -group root -print | xargs chgrp temp
+find /usr/local -name "*.html" -type f -exec chmod 644 {} \;
+chown root:root it
+chown root:root script.sh
+sudo chown root:root testfile.txt
+sudo chown root:root uid_demo
+find . /home/admin/data/ -type d -exec chown admin.admin {} \;
+find . -maxdepth 1 -not -name "." -print0 | xargs --null chown -R apache:apache
+find /usr/lpp/FINANCIALS -print | xargs chown roger.staff
+find ~ -group vboxusers -exec chown kent:kent {} \;
+find . /home/admin/data/ -type f -exec chown admin.admin {} \;
+chown -v root:root /path/to/yourapp
+chown root:root it
+chown root:root script.sh
+sudo chown root:root uid_demo
+chown $JBOSS_USER $JBOSS_CONSOLE_LOG
+sudo chown nobody /var/www/html/mysite/images/
+sudo chown nobody /var/www/html/mysite/tmp_file_upload/
+chown user_name file
+chown user_name folder
+sudo chown el my_test_expect.exp
+sudo chown root process
+find /mydir -type f -name "*.txt" -execdir chown root {} ';'
+ls /empty_dir/ | xargs -L10 chown root
+ls /empty_dir/ | xargs -n10 chown root
+find . -exec chown myuser:a-common-group-name {} +
+find . -not -iwholename './var/foo*' -exec chown www-data '{}' \;
+find dir_to_start -name dir_to_exclude -prune -o -print0 | xargs -0 chown owner
+find dir_to_start -not -name "file_to_exclude"  -print0 | xargs -0 chown owner
+find /u/netinst -print | xargs chown netinst
+find . -not -iwholename './var/foo*' -exec chown www-data '{}' \;
+find .-type f -user root -exec chown tom {} \;
+chown user_name file
+sudo chown root /home/bob
+chown user destination_dir
+$sudo chown root file.sh
+find /mydir -type f -name "*.txt" -execdir chown root {} ';'
+find /mydir -type f -name "*.txt" -print0 | xargs -0 chown root $(mktemp)
+find dir_to_start -name dir_to_exclude -prune -o -print0 | xargs -0 chown owner
+sudo chown el my_test_expect.exp     //make el the owner.
+sudo chown root process
+chown $1:httpd .htaccess
+chown $FUID:$FGID "$FILE2"
+sudo chown hduser:hadoop {directory path}
+chown owner:nobody public_html
+sudo chown root:dockerroot /var/run/docker.sock
+chown root:specialusers dir1
+sudo chown root:wheel adbind.bash
+sudo chown root:wheel bin
+sudo chown root:wheel com.xxxx.adbind.plist
+sudo chown root:www-data /foobar/test_file
+chown user:group file ...
+sudo chown `whoami` /data/db
+sudo chown root /home/bob
+sudo chown `whoami` /vol
+find . -type d -exec chown username {} \;
+find . -exec chown myuser:a-common-group-name {} +
+find / -user edwarda -exec chown earnestc "{}" \;
+find / -user edwarda -print | xargs chown earnestc
+find . -type f -exec chown username {} \;
+find . -type f | xargs chown username
+find . -type f -print0 | xargs -0 chown username
+find -x / -user george -print0 | xargs -0 chown eva
+find . -type d -user harry -exec chown daisy {} \;
+find . -name "*.php" -exec chmod 755 {} \;
+chmod 751 `find ./ -type d -print`
+chmod 444 .bash_logout .bashrc .profile
+sudo chmod 755 .git/hooks/pre-commit
+sudo chmod 777 .git/hooks/prepare-commit-msg
+sudo chmod 755 /dvtcolorconvert.rb
+chmod 777 /usr/bin/wget
+sudo chmod 755 mksdcard
+find htdocs cgi-bin -name "*.cgi" -type f -exec chmod 755 {} \;
+sudo find . -type d -exec chmod 755 {} +
+find . -type d -exec chmod 755 {} +
+chmod 751 `find ./ -type d -print`
+find . -type d -exec chmod 2775 {} \;
+find . -type d | xargs chmod 2775
+find . -type d -exec chmod 755 {} \;
+find root_dir -type d -exec chmod 555 {} \;
+find ~/dir_data -type d -exec chmod a+xr,u+w {} \;
+find ./debian -type d | xargs chmod 755
+find -type d -exec chmod 755 {} \;
+find /home/nobody/public_html -type d -exec chmod 755 {} \;
+find . -type d -exec chmod 775 {} \;
+find . -name "*.php" -exec chmod 755 {} + -printf '.' | wc -c
+find . -name "*.php" -exec chmod 755 {} \; -exec /bin/echo {} \; | wc -l
+find /store/01 -name "*.fits" -exec chmod -x+r {} \; \
+find /store/01 -name "*.fits" -exec chmod -x+r {} \; -exec ls -l {} \; | tee ALL_FILES.LOG
+find . \( -type f -exec sudo chmod 664 "{}" \; \) , \( -type d -exec sudo chmod 775 "{}" \; \)
+find / -type f -perm 0777 -print -exec chmod 644 {} \;
+find / -type f -perm 0777 -print -exec chmod 644 {} \;
+find /path/to/dir/ -type f -print0 | xargs -0 chmod 644
+find . -name "*.php" -exec chmod 755 {} \;
+find . -name "*.php" -exec chmod 755 {} +
+find /home/user/demo -type f -perm 777 -print -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} +
+find . -type f -exec chmod 664 {} \;
+find . -type f | xargs chmod 664
+find . -type f -exec chmod 500 {} ';'
+chmod 640 `find ./ -type f -print`
+sudo find . -type f -exec chmod 644 {} +
+find . -type f -perm 777 -exec chmod 755 {} \;
+sudo find /path/to/someDirectory -type f -print0 | xargs -0 sudo chmod 644
+find /home -type f -perm 0777 -print -exec chmod 700 {} \;
+find root_dir -type f -exec chmod 444 {} \;
+find ~/dir_data -type f -exec chmod a-x,u+w {} \;
+find -type f -exec chmod 644 {} \;
+find /home/nobody/public_html -type f -exec chmod 644 {} \;
+find . -type f -exec chmod 644 {} \;
+find /var/ftp/mp3 -name '*.mp3' -type f -exec chmod 644 {} \;
+find / -name *.rpm -exec chmod 755 '{}' \;
+find /home/john/script -name "*.sh" -type f -exec chmod 644 {} \;
+chmod 555 /home/sshtunnel/
+find /var/www/html -type d -perm 777 -print -exec chmod 755 {} \;
+find . -maxdepth 1 -type d -exec chmod -R 700 {} \;
+find /path/to/directory -type f -mtime +30 -exec chmod 644 {} +
+find /var/ftp/mp3 -name '*.mp3' -type f -exec chmod 644 {} \;
+find /path/to/look/in/ -type d -name '.texturedata' -exec chmod 000 {} \; -prune
+find /path/to/look/in/ -type d -name '.texturedata' -prune -print0 | xargs -0 chmod 000
+find . -type f -exec chmod 0644 {} +
+find . -type f -exec chmod 0644 {} \;
+find /path -type d -exec chmod 0755 "{}" \;
+find /path -type d -exec chmod 0755 {} \;
+find /path -type d | xargs chmod 0755
+find . -type f -exec chmod 500 {} ';'
+find . -name "*.rb" -type f -exec chmod 600 {} \;
+find /usr/local -name "*.html" -type f -exec chmod 644 {} \;
+find . -type f | xargs -I{} chmod -v 644 {}
+find . -type f | xargs chmod -v 644
+find ./ -type f -print0 | xargs -t -0 chmod -v 644
+find . -type f | xargs -I{} chmod -v 644 {}
+find . -type f | xargs chmod -v 644
+find /path/to/dir/ -type f -print0 | xargs -0 chmod 644
+find /path/to/dir ! -perm 0644 -exec chmod 0644 {} \;
+find /path/to/dir/ -type f ! -perm 0644 -print0 | xargs -0 chmod 644
+find /path/to/someDirectory -type f -print0 | xargs -0 sudo chmod 644
+find . -type d -print0|xargs -0 chmod 644
+find . -perm 755 -exec chmod 644 {} \;
+find . -type f -perm 755 -exec chmod 644 {} \;
+find . -type f -exec chmod 644 {} \;
+find . -mindepth 1 -type d | xargs chmod 700
+find . -mindepth 2 | xargs chmod 700
+find /path/to/dir -type d -exec chmod 755 {} \;
+find . -type d | xargs chmod -v 755
+find "$d/" -type d -print0 | xargs -0 chmod 755
+find . -type d | xargs chmod -v 755
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod u=rw,g=r,o= '{}' \;
+find . -type f -exec chmod u=rw,g=r,o= '{}' \;
+find . -type d -exec chmod u=rwx,g=rx,o= '{}' \;
+find . -type d -exec chmod u=rwx,g=rx,o= '{}' \;
+cp --remove-destination $(readlink $f) $f
+touch -h somesymlink
+cd foo | cat
+cd -P xyz
+cd "$(dirname "$(which oracle)")"
+cd `cat $HOME/.lastdir`
+cd `dirname $(which python)`
+cd "$TAG"
+cd $(dirname $(which ssh));
+cd "$(dirname "$(which oracle)")"
+cd "$(dirname $(which oracle))"
+cd $(dirname $(which oracle))
+cd $(dirname `which oracle`)
+cd $(which oracle | xargs dirname)
+cd `dirname $TARGET_FILE`
+cd -P ..
+find /var/www -print0 | xargs -0 chown www-data:www-data
+sudo chown root:dockerroot /var/run/docker.sock
+chown amzadm.root  /usr/bin/aws
+sudo chown root:wheel bin
+chown owner:nobody public_html
+find / -user 1005 -exec chown -h foo {} \;
+chown amzadm.root  /usr/bin/aws
+find . -type d -user harry -exec chown daisy {} \;
+find . -type f -iname "*.txt" -print | xargs grep "needle"
+find . -type f -iname "*.txt" -print0 | xargs -0 grep "needle"
+bzip2 -t file.bz2
+sudo env
+find --version
+AMV=$(mount -l | grep "\[$VLABEL\]")
+mount | grep -q ~/mnt/sdc1
+find "$somedir" -maxdepth 0 -empty -exec echo {} is empty. \;
+is_nullglob=$( shopt -s | egrep -i '*nullglob' )
+mount |grep nfs
+mount | grep $(readlink -f /dev/disk/by-uuid/$UUID )
+find . -path ./.git -prune -o -print -a \( -type f -o -type l -o -type d \) | grep '.git'
+cat *.txt | sort | sort -u -c
+comm -23 <(sort subset | uniq) <(sort set | uniq) | head -1
+find "`echo "$some_dir"`" -maxdepth 0 -empty
+find "$somedir" -type f -exec echo Found unexpected file {} \;
+ls `readlink somelink`
+find myfile -perm 0644 -print
+kill -0 1
+du -csxb /path | md5sum -c file
+bind -p | grep $'"\x61"'
+groups monit |grep www-data
+ssh -O check officefirewall

