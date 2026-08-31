@@ -11,7 +11,7 @@ Hermes has no classifier-gated permission mode; this plugin adds one as a `pre_t
 | 1 | `force_allow` / `force_approve` config regexes | ~0 | skip classification / force human gate |
 | 2 | Static read-only allow (`git status`, `ls`, `cat`, ...) | ~0 | proceed, no model call |
 | 3 | Static catastrophic block (fork bombs, `curl\|sh`, disk wipes, base64-exfil one-liners) | ~0 | veto even if Ollama is down |
-| 4 | Local LLM classifier | ~0.25s warm | `allow` → proceed, `block` → veto with reason |
+| 4 | Local LLM classifier | ~0.25s warm | `allow` → proceed, `block` → veto with reason **and a safer alternative** the agent can run instead (or `ask-user` when none exists) |
 | 5 | Classifier unreachable / unparseable | — | **escalate to the human approval gate** (fail-closed: cron and `-q` runs deny, per Hermes' own gate semantics) |
 
 Model vetoes include the reason, so the agent can self-correct or surface the decision to you.
