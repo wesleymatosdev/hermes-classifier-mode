@@ -1,6 +1,6 @@
 # hermes-classifier-mode
 
-Claude Code's [`--permission-mode auto`](https://code.claude.com/docs/en/permission-modes) for [Hermes Agent](https://github.com/NousResearch/hermes-agent): a **local LLM classifier reviews every shell command before it executes** — autonomy with a second model judging each action, instead of approval prompts (`default`) or skipping all checks (`--yolo`).
+Claude Code's [`--permission-mode auto`](https://code.claude.com/docs/en/permission-modes) for [Hermes Agent](https://github.com/NousResearch/hermes-agent): a **local LLM classifier reviews every shell command and `execute_code` script before it runs** — autonomy with a second model judging each action, instead of approval prompts (`default`) or skipping all checks (`--yolo`).
 
 Hermes has no classifier-gated permission mode; this plugin adds one as a `pre_tool_call` hook. Runs entirely on-device via Ollama.
 
