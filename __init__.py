@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 _DEFAULTS: Dict[str, Any] = {
     "enabled": True,
     "ollama_url": "http://localhost:11434",
-    "model": "qwen3:30b",
+    "model": "hf.co/ornith-ai/Ornith-1.5-35B-A3B-GGUF:Q5_K_M",
     "timeout_s": 20,
     # How long Ollama keeps the model warm between verdicts (seconds).
     "keep_alive_s": 600,
@@ -208,7 +208,14 @@ def _ollama_classify(cfg: Dict[str, Any], command: str) -> Optional[Dict[str, An
     try:
         with urllib.request.urlopen(req, timeout=cfg["timeout_s"]) as resp:
             out = json.load(resp)
-        verdict = json.loads(out["message"]["content"])
+        content = str(out["message"]["content"]).strip()
+        # Some models wrap JSON in a markdown code fence — strip it.
+        if content.startswith("```"):
+            content = content.strip("`")
+            if content.lower().startswith("json"):
+                content = content[4:]
+            content = content.strip()
+        verdict = json.loads(content)
         v = str(verdict.get("verdict", "")).lower()
         if v in ("allow", "block"):
             return {"verdict": v, "reason": str(verdict.get("reason", ""))[:200]}
@@ -240,6 +247,13 @@ def _on_pre_tool_call(
     command = ""
     if isinstance(args, dict):
         command = str(args.get("command") or "")
+        if tool_name == "execute_code" and not command.strip():
+            # execute_code passes the script in `code`, not `command`. Feed the
+            # actual script text to the classifier, labeled so the model knows
+            # what shape of payload it is judging.
+            code = str(args.get("code") or "")
+            if code.strip():
+                command = "[execute_code: Python script about to run]\n" + code
     if not command.strip():
         return None
 
