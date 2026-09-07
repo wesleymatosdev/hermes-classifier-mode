@@ -16,6 +16,8 @@ Hermes has no classifier-gated permission mode; this plugin adds one as a `pre_t
 
 Model vetoes include the reason, so the agent can self-correct or surface the decision to you.
 
+Layer 4 verdicts are **deterministic**: each request pins a sampling seed derived from the command text (stable across restarts), and successful verdicts are cached per `(model, command)` for `verdict_cache_s` seconds (default 24h, `0` disables). The same command always gets the same verdict — temperature 0 alone does not stop a local model from inventing a different free-form reason on every call.
+
 ## Install
 
 ```bash
@@ -36,7 +38,10 @@ classifier_mode:
   ollama_url: http://localhost:11434
   timeout_s: 20
   keep_alive_s: 600             # keep the model warm between verdicts
-  force_allow_patterns:         # regexes that skip classification
+  force_allow_patterns:         # regexes that skip classification;
+                                # setting this key REPLACES the plugin's
+                                # built-in defaults — copy them here if you
+                                # want to keep them alongside your own
     - "^brew (install|upgrade) "
   force_approve_patterns:       # regexes that always need a human
     - "\\bgit push\\b.*\\b--force\\b"

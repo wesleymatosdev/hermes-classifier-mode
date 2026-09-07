@@ -1,5 +1,5 @@
 name: hermes-classifier-mode
-version: "0.2.0"
+version: "0.2.1"
 description: "Claude Code `auto` permission mode for Hermes: routes shell commands through a local LLM classifier (Ollama) before execution. Static fast paths for read-only commands and catastrophic patterns; classifier verdicts allow/block; unreachable classifier escalates to the human approval gate (fail-closed). Configure via classifier_mode: in config.yaml."
 author: "Wesley Matos"
 hooks:
