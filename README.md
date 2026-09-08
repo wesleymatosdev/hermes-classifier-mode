@@ -50,9 +50,14 @@ classifier_mode:
 ```
 
 Before a `force_allow` regex is evaluated, the plugin checks the raw command
-for active shell syntax. Commands containing shell operators, `$(`, `${`, or
-backticks do not take the force-allow fast path—even when that syntax is inside
-double quotes—and continue to the normal classifier or human-approval path.
+for active shell syntax. Commands containing shell operators, `$(`, `${`, bare
+`$VAR` parameter expansions, or backticks do not take the force-allow fast
+path—even when that syntax is inside double quotes—and continue to the normal
+classifier or human-approval path. The same applies to commands carrying any
+byte outside printable ASCII plus POSIX whitespace (space/tab/newline): shells
+lex control bytes and unicode-space lookalikes (VT, FF, CR, NBSP, ...) as
+ordinary word bytes even though Python's whitespace classes do not, so they
+never legitimately extend an allowed command.
 
 ## Benchmark (M4 Max 48GB, 2026-08-31)
 

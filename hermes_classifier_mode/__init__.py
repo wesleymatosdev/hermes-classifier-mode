@@ -161,6 +161,17 @@ _STATIC_BLOCK_RES = [
 ]
 
 
+# A `$` opens a live expansion when the next byte can start a braced,
+# substitution, parameter, positional, or special form: `${`, `$(`, `$NAME`,
+# `$0`-`$9`, `$@ * # ? - _ $ !`. A `$` before anything else (a space, a
+# quote, end of word) is literal data. Bare `$VAR` word-splits and globs at
+# execution just like `${VAR}`, so it gets the same scrutiny.
+_EXPANSION_STARTERS = frozenset(
+    "({@*#?$!-_0123456789"
+    "abcdefghijklmnopqrstuvwxyz"
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+
 def _shell_scan(command: str) -> tuple[str, bool]:
     """Return unquoted text and whether POSIX shell syntax needs scrutiny."""
     bare = []
@@ -184,7 +195,7 @@ def _shell_scan(command: str) -> tuple[str, bool]:
                 else:
                     i += 1
             elif ch == "`" or (ch == "$" and i + 1 < len(command)
-                             and command[i + 1] in "({"):
+                               and command[i + 1] in _EXPANSION_STARTERS):
                 active = True
             i += 1
             continue
@@ -205,7 +216,7 @@ def _shell_scan(command: str) -> tuple[str, bool]:
             if ch in "|;&><\n":
                 active = True
             elif ch == "`" or (ch == "$" and i + 1 < len(command)
-                               and command[i + 1] in "({"):
+                               and command[i + 1] in _EXPANSION_STARTERS):
                 active = True
             # POSIX shells delimit words on space, tab, and newline ONLY.
             # Python's isspace() also claims VT/FF/CR/NBSP/U+2028/..., which

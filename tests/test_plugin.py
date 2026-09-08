@@ -481,6 +481,33 @@ class TestForceAllowFalseCommentBypass(unittest.TestCase):
                     self.assertFalse(self._allowed(cmd), repr(cmd))
 
 
+class TestForceAllowBareExpansion(unittest.TestCase):
+    """Round-2 review Finding 2 (MEDIUM): a bare `$VAR`/positional expansion
+    is expanded by the shell at execution time exactly like the braced
+    `${VAR}` form the branch already refuses, so the unbraced form — quoted
+    or not — must stay off the force-allow fast path too."""
+
+    def _allowed(self, cmd):
+        return cm._overrides(
+            {"force_allow_patterns": cm._DEFAULTS["force_allow_patterns"],
+             "force_approve_patterns": []},
+            cmd) == "allow"
+
+    def test_bare_expansions_never_force_allow(self):
+        for bad in ["hermes cron status $HOME",
+                    "hermes cron status $IFS",
+                    "hermes cron status $0",
+                    'hermes cron status "$HOME"']:
+            with self.subTest(cmd=bad):
+                self.assertFalse(self._allowed(bad), bad)
+
+    def test_trailing_dollar_still_literal(self):
+        # `$` not followed by an expansion starter is inert data; the policy
+        # must stay precise, not ban the byte outright.
+        self.assertTrue(self._allowed('hermes cron status "cost $"'),
+                        'hermes cron status "cost $"')
+
+
 class TestSubstitutionProbesReachGate(unittest.TestCase):
     """Review verification clause: the quoted-substitution probes must not be
     silently allowed by the hook. With the classifier unreachable they must
