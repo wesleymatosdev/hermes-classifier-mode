@@ -73,8 +73,11 @@ _DEFAULTS: Dict[str, Any] = {
         # The two benign delegation-seat config assignments (nothing else).
         r"^hermes config set delegation\.provider openai-codex$",
         r"^hermes config set delegation\.model gpt-5\.6-sol$",
-        # Read-only cron inspection forms (never mutate).
-        r"^hermes cron (?:list|status|runs|doctor)(?:\s.*)?$",
+        # Read-only cron inspection forms (never mutate). The tail accepts a
+        # POSIX blank then printable ASCII only: Python `\s`/`.` would also
+        # carry VT/FF/CR/NBSP/... — shell word bytes that must never extend
+        # an allowed command (round-2 review Finding 1).
+        r"^hermes cron (?:list|status|runs|doctor)(?:[ \t][\x20-\x7e]*)?$",
         # Cron model-pin edits only, in either flag order.
         r"^hermes cron edit [A-Za-z0-9._:-]+ (?:(?:--provider openai-codex)(?: --model gpt-5\.6-sol)?|(?:--model gpt-5\.6-sol)(?: --provider openai-codex)?)$",
     ],
@@ -204,7 +207,11 @@ def _shell_scan(command: str) -> tuple[str, bool]:
             elif ch == "`" or (ch == "$" and i + 1 < len(command)
                                and command[i + 1] in "({"):
                 active = True
-            word_start = ch.isspace() or ch in "|;&><"
+            # POSIX shells delimit words on space, tab, and newline ONLY.
+            # Python's isspace() also claims VT/FF/CR/NBSP/U+2028/..., which
+            # a shell lexes as ordinary word bytes — trusting it here let a
+            # lookalike byte before `#` fake a comment and hide the tail.
+            word_start = ch in " \t\n|;&><"
         i += 1
     return "".join(bare), active or quote is not None
 
@@ -241,8 +248,17 @@ def _compile_res(patterns) -> list:
     return out
 
 
+# A force_allow candidate may only contain printable ASCII plus POSIX
+# whitespace (space/tab/newline). Control bytes and unicode-space lookalikes
+# (VT, FF, CR, NEL, NBSP, U+2028, ...) never legitimately extend an allowed
+# command, and Python's regex whitespace classes would happily match them —
+# so they disqualify the command from the fast path outright.
+_FORCE_ALLOW_BAD_BYTES = re.compile(r"[^\x20-\x7e\t\n]")
+
+
 def _overrides(cfg, command):
-    if not _has_active_shell_syntax(command):
+    if (not _has_active_shell_syntax(command)
+            and not _FORCE_ALLOW_BAD_BYTES.search(command)):
         for rx in _compile_res(cfg["force_allow_patterns"]):
             if rx.search(command):
                 return "allow"

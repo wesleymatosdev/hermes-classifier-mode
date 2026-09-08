@@ -418,6 +418,69 @@ class TestDefaultAllowPatterns(unittest.TestCase):
             self.assertFalse(self._allowed(bad), bad)
 
 
+class TestForceAllowFalseCommentBypass(unittest.TestCase):
+    """Round-2 review Finding 1 (HIGH): Python's isspace()/\\s whitespace
+    classes are wider than POSIX shell word boundaries. VT, FF, CR, NBSP,
+    U+2028, ... are ordinary WORD bytes to a shell, so a `#` preceded by one
+    is mid-word data — never a comment. A scanner that breaks the scan there
+    hides the executable tail from force_allow while the permissive cron
+    tail (\\s.*) still matches the raw string."""
+
+    # one byte per whitespace family Python calls whitespace and a POSIX
+    # shell calls an ordinary word byte
+    BYTES = {
+        "VT": "\x0b",
+        "FF": "\x0c",
+        "CR": "\r",
+        "NBSP": "\u00a0",
+        "U+2028": "\u2028",
+    }
+    PAYLOADS = {
+        "substitution": "$(touch /tmp/PWN)",
+        "operator": "; touch /tmp/PWN",
+    }
+
+    def _allowed(self, cmd):
+        return cm._overrides(
+            {"force_allow_patterns": cm._DEFAULTS["force_allow_patterns"],
+             "force_approve_patterns": []},
+            cmd) == "allow"
+
+    def test_shell_blank_lookalike_never_starts_a_comment(self):
+        for bname, byte in self.BYTES.items():
+            for pname, payload in self.PAYLOADS.items():
+                cmd = f"hermes cron status {byte}#{payload}"
+                with self.subTest(byte=bname, payload=pname):
+                    # the scanner must see the tail as active shell syntax
+                    self.assertTrue(cm._has_active_shell_syntax(cmd), cmd)
+                    # ...so the cron allow-tail cannot carry it
+                    self.assertFalse(self._allowed(cmd), cmd)
+
+    def test_hook_reaches_human_gate_for_lookalike_comment_probes(self):
+        cfg = dict(cm._DEFAULTS)
+        cm._scope["busy"] = False
+        with mock.patch.object(cm, "_load_config", return_value=cfg), \
+                mock.patch.object(cm, "_ollama_classify", return_value=None):
+            for bname in ("VT", "NBSP"):
+                probe = f"hermes cron status {self.BYTES[bname]}#$(touch /tmp/PWN)"
+                res = cm._on_pre_tool_call(
+                    tool_name="terminal", args={"command": probe})
+                self.assertIsNotNone(res, probe)
+                self.assertEqual(res["action"], "approve", probe)
+
+    def test_payload_corpus_never_rides_cron_tail(self):
+        # Property-style guard (review rec 3): whenever the cron allow-tail
+        # would match the raw text, any shell-blank-lookalike byte before a
+        # comment-looking `#` must keep the command OFF the force-allow fast
+        # path — via the scanner OR the byte gate, never neither.
+        for byte in self.BYTES.values():
+            for tail in ["#x", "#; touch /t", "#$(touch /t)",
+                         "#`touch /t`", "# && touch /t", "# | touch /t"]:
+                cmd = f"hermes cron status {byte}{tail}"
+                with self.subTest(cmd=repr(cmd)):
+                    self.assertFalse(self._allowed(cmd), repr(cmd))
+
+
 class TestSubstitutionProbesReachGate(unittest.TestCase):
     """Review verification clause: the quoted-substitution probes must not be
     silently allowed by the hook. With the classifier unreachable they must
