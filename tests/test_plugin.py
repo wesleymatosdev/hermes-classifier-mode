@@ -397,9 +397,12 @@ class TestDefaultAllowPatterns(unittest.TestCase):
                     "hermes cron list > /etc/hosts",
                     "hermes cron list `touch /tmp/pwned`"]:
             self.assertFalse(self._allowed(bad), bad)
-        # inert operator characters inside double quotes are literal data
-        self.assertTrue(self._allowed('hermes cron status "t | x"'),
-                        'hermes cron status "t | x"')
+        # round 3 supersedes the old inert-quotes carve-out: the quote bytes
+        # themselves are outside the safe charset, so even quoted literal
+        # text keeps the command off the fast path (it falls through to the
+        # classifier, which judges it as usual)
+        self.assertFalse(self._allowed('hermes cron status "t | x"'),
+                         'hermes cron status "t | x"')
 
     def test_force_allow_never_covers_quoted_command_substitution(self):
         # Review HIGH finding: $() and backticks stay executable INSIDE
@@ -502,11 +505,12 @@ class TestForceAllowBareExpansion(unittest.TestCase):
             with self.subTest(cmd=bad):
                 self.assertFalse(self._allowed(bad), bad)
 
-    def test_trailing_dollar_still_literal(self):
-        # `$` not followed by an expansion starter is inert data; the policy
-        # must stay precise, not ban the byte outright.
-        self.assertTrue(self._allowed('hermes cron status "cost $"'),
-                        'hermes cron status "cost $"')
+    def test_dollar_never_takes_the_fast_path(self):
+        # round 3 supersedes the old inert-`$` precision carve-out: the
+        # charset gate bans the byte outright on the fast path; the command
+        # falls through to the classifier, which judges it as usual
+        self.assertFalse(self._allowed('hermes cron status "cost $"'),
+                         'hermes cron status "cost $"')
 
 
 class TestForceAllowSafeCharsetRound3(unittest.TestCase):

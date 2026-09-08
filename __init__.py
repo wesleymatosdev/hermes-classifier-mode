@@ -73,11 +73,11 @@ _DEFAULTS: Dict[str, Any] = {
         # The two benign delegation-seat config assignments (nothing else).
         r"^hermes config set delegation\.provider openai-codex$",
         r"^hermes config set delegation\.model gpt-5\.6-sol$",
-        # Read-only cron inspection forms (never mutate). The tail accepts a
-        # POSIX blank then printable ASCII only: Python `\s`/`.` would also
-        # carry VT/FF/CR/NBSP/... — shell word bytes that must never extend
-        # an allowed command (round-2 review Finding 1).
-        r"^hermes cron (?:list|status|runs|doctor)(?:[ \t][\x20-\x7e]*)?$",
+        # Read-only cron inspection forms (never mutate). The tail is bounded
+        # to the same safe charset as the admission gate (_FORCE_ALLOW_SAFE):
+        # no pattern may match bytes the gate excludes, so the gate stays
+        # sufficient even if a future edit weakens it (round-3).
+        r"^hermes cron (?:list|status|runs|doctor)(?: [A-Za-z0-9 _@:.,/+-]*)?$",
         # Cron model-pin edits only, in either flag order.
         r"^hermes cron edit [A-Za-z0-9._:-]+ (?:(?:--provider openai-codex)(?: --model gpt-5\.6-sol)?|(?:--model gpt-5\.6-sol)(?: --provider openai-codex)?)$",
     ],
@@ -173,7 +173,12 @@ _EXPANSION_STARTERS = frozenset(
 
 
 def _shell_scan(command: str) -> tuple[str, bool]:
-    """Return unquoted text and whether POSIX shell syntax needs scrutiny."""
+    """Return unquoted text and whether POSIX shell syntax needs scrutiny.
+
+    Detection/messaging helper only since round 3: the force-allow fast path
+    no longer trusts this lexer's verdict (see `_FORCE_ALLOW_SAFE`) — three
+    review rounds kept finding execution forms that carry zero flagged bytes
+    (zsh `=(...)`/`*(e:...)`, second lines behind `#` comment breaks)."""
     bare = []
     quote = None
     word_start = True
@@ -259,17 +264,22 @@ def _compile_res(patterns) -> list:
     return out
 
 
-# A force_allow candidate may only contain printable ASCII plus POSIX
-# whitespace (space/tab/newline). Control bytes and unicode-space lookalikes
-# (VT, FF, CR, NEL, NBSP, U+2028, ...) never legitimately extend an allowed
-# command, and Python's regex whitespace classes would happily match them —
-# so they disqualify the command from the fast path outright.
-_FORCE_ALLOW_BAD_BYTES = re.compile(r"[^\x20-\x7e\t\n]")
+# Round-3: the force-allow fast path admits ONLY the safe charset — letters,
+# digits, spaces, and the punctuation `_ @ : . , / + -`. Three adversarial
+# reviews of construct-by-construct shell lexing kept finding execution forms
+# spelled entirely from unflagged word bytes (zsh `=(cmd)` process
+# substitution, `*(e:cmd:)` glob qualifiers, a live second line behind a `#`
+# comment break), and no lexer enumeration can be proven complete. A command
+# carrying ANY other byte — quotes, $, backticks, parens, braces, brackets,
+# operators, #, globs, tab/newline, non-ASCII — never takes the fast path; it
+# falls through to the static rules and the classifier as usual. Over-scrutiny
+# (benign quoted/expanded commands now pay classifier latency) is the
+# accepted cost of closing the whole class at once.
+_FORCE_ALLOW_SAFE = re.compile(r"[A-Za-z0-9 _@:.,/+-]*")
 
 
 def _overrides(cfg, command):
-    if (not _has_active_shell_syntax(command)
-            and not _FORCE_ALLOW_BAD_BYTES.search(command)):
+    if _FORCE_ALLOW_SAFE.fullmatch(command):
         for rx in _compile_res(cfg["force_allow_patterns"]):
             if rx.search(command):
                 return "allow"
