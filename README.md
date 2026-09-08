@@ -8,7 +8,7 @@ Hermes has no classifier-gated permission mode; this plugin adds one as a `pre_t
 
 | Order | Layer | Latency | Behavior |
 |---|---|---|---|
-| 1 | `force_allow` / `force_approve` config regexes | ~0 | skip classification / force human gate |
+| 1 | `force_allow` / `force_approve` config regexes | ~0 | `force_allow` skips classification only for commands without active shell syntax; `force_approve` forces the human gate |
 | 2 | Static read-only allow (`git status`, `ls`, `cat`, ...) | ~0 | proceed, no model call |
 | 3 | Static catastrophic block (fork bombs, `curl\|sh`, disk wipes, base64-exfil one-liners) | ~0 | veto even if Ollama is down |
 | 4 | Local LLM classifier | ~0.25s warm | `allow` → proceed, `block` → veto with reason **and a safer alternative** the agent can run instead (or `ask-user` when none exists) |
@@ -38,7 +38,8 @@ classifier_mode:
   ollama_url: http://localhost:11434
   timeout_s: 20
   keep_alive_s: 600             # keep the model warm between verdicts
-  force_allow_patterns:         # regexes that skip classification;
+  force_allow_patterns:         # regexes that skip classification only for
+                                # commands without active shell syntax;
                                 # setting this key REPLACES the plugin's
                                 # built-in defaults — copy them here if you
                                 # want to keep them alongside your own
@@ -47,6 +48,11 @@ classifier_mode:
     - "\\bgit push\\b.*\\b--force\\b"
     - "^docker (rmi|system prune)"
 ```
+
+Before a `force_allow` regex is evaluated, the plugin checks the raw command
+for active shell syntax. Commands containing shell operators, `$(`, `${`, or
+backticks do not take the force-allow fast path—even when that syntax is inside
+double quotes—and continue to the normal classifier or human-approval path.
 
 ## Benchmark (M4 Max 48GB, 2026-08-31)
 
