@@ -8,7 +8,7 @@ Hermes has no classifier-gated permission mode; this plugin adds one as a `pre_t
 
 | Order | Layer | Latency | Behavior |
 |---|---|---|---|
-| 1 | `force_allow` / `force_approve` config regexes | ~0 | `force_allow` skips classification only for commands without active shell syntax; `force_approve` forces the human gate |
+| 1 | `force_allow` / `force_approve` config regexes | ~0 | `force_allow` skips classification only for commands built entirely from the safe charset (letters, digits, spaces, `_ @ : . , / + -`); `force_approve` forces the human gate |
 | 2 | Static read-only allow (`git status`, `ls`, `cat`, ...) | ~0 | proceed, no model call |
 | 3 | Static catastrophic block (fork bombs, `curl\|sh`, disk wipes, base64-exfil one-liners) | ~0 | veto even if Ollama is down |
 | 4 | Local LLM classifier | ~0.25s warm | `allow` → proceed, `block` → veto with reason **and a safer alternative** the agent can run instead (or `ask-user` when none exists) |
@@ -39,7 +39,8 @@ classifier_mode:
   timeout_s: 20
   keep_alive_s: 600             # keep the model warm between verdicts
   force_allow_patterns:         # regexes that skip classification only for
-                                # commands without active shell syntax;
+                                # commands built from the safe charset
+                                # (letters/digits/spaces/_@:.,/+-);
                                 # setting this key REPLACES the plugin's
                                 # built-in defaults — copy them here if you
                                 # want to keep them alongside your own
@@ -49,15 +50,19 @@ classifier_mode:
     - "^docker (rmi|system prune)"
 ```
 
-Before a `force_allow` regex is evaluated, the plugin checks the raw command
-for active shell syntax. Commands containing shell operators, `$(`, `${`, bare
-`$VAR` parameter expansions, or backticks do not take the force-allow fast
-path—even when that syntax is inside double quotes—and continue to the normal
-classifier or human-approval path. The same applies to commands carrying any
-byte outside printable ASCII plus POSIX whitespace (space/tab/newline): shells
-lex control bytes and unicode-space lookalikes (VT, FF, CR, NBSP, ...) as
-ordinary word bytes even though Python's whitespace classes do not, so they
-never legitimately extend an allowed command.
+Before a `force_allow` regex is evaluated, the whole command must be built
+from the safe charset: letters, digits, spaces, and the punctuation
+`_ @ : . , / + -`. Any other byte — quotes, `$`, backticks, parentheses,
+braces, brackets, operators, `#`, glob characters, tabs/newlines, non-ASCII —
+keeps the command on the normal classifier/human-approval path. Shells keep
+gaining execution forms spelled entirely from plain word bytes: three
+adversarial reviews of a construct-by-construct lexer each found bypasses
+(zsh's `=(cmd)` process substitution and `*(e:cmd:)` glob qualifier execute
+arbitrary payloads with no operator byte; a live second line hides behind a
+`#` comment break), so the fast path now simply refuses anything that isn't
+plain words instead of enumerating syntax. Benign commands that quote or
+expand anything pay classifier latency — that over-scrutiny is the
+deliberate trade for closing the whole class at once.
 
 ## Benchmark (M4 Max 48GB, 2026-08-31)
 

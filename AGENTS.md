@@ -9,6 +9,7 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 - Layout: the repo-root `__init__.py` is the shipped module; `hermes_classifier_mode/__init__.py` is the package-dir copy Hermes imports. Every code change is made once and copied to both — `make check` enforces byte-identity (see `.hermes.md` for the full gotchas).
 - Test: `make test` (no Ollama needed); `tests/test_live.py` auto-skips when Ollama is down. Install: `make install`.
 - Config gotcha: `classifier_mode.force_allow_patterns` set in the user's config.yaml REPLACES the plugin's default list (see README) — keep default entries when extending.
+- Force-allow fast path gates on a safe charset (`_FORCE_ALLOW_SAFE`: `[A-Za-z0-9 _@:.,/+-]`), NOT on shell lexing — three review rounds each found execution forms (zsh `=(…)`, `*(e:…)`, newline behind `#`) with zero flagged bytes. Don't reintroduce lexer-based admission; keep built-in patterns bounded to the same charset.
 
 ## Maintaining this file
 
