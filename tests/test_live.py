@@ -2,11 +2,19 @@
 
 Runs the verdict pipeline end-to-end (static paths + real model calls) over a
 labeled suite. Skipped (not failed) when Ollama or the model is unavailable.
+Live suite is OPT-IN: `make test` never runs it. Export
+HERMES_CLASSIFIER_LIVE=1 to include it, and even then it skips unless the
+Ollama /api/tags probe (3s bound) confirms the configured model is present.
+Review finding #2 (2026-09-13): a reachable-but-slow Ollama made `make test`
+time out repeatedly — env-offline by default fixes that class of failure.
 """
 
+import os
 import time
 import unittest
 from pathlib import Path
+
+_LIVE_ENABLED = os.environ.get("HERMES_CLASSIFIER_LIVE") == "1"
 
 _spec_ok = True
 try:
@@ -24,14 +32,33 @@ try:
         cm._DEFAULTS["ollama_url"].rstrip("/") + "/api/tags")
     with urllib.request.urlopen(_req, timeout=3) as r:
         _tags = _json.load(r)
-    _models = {m.get("name", "") for m in _tags.get("models", [])}
-    if cm._DEFAULTS["model"] not in _models:
+    _models = {m.get("name", "").split(":")[0] for m in _tags.get("models", [])}
+    _model_base = cm._DEFAULTS["model"].split(":")[0]
+    if not (_model_base in _models or cm._DEFAULTS["model"] in _models):
         _spec_ok = False
+    if _spec_ok:
+        # /api/tags only proves the model is LISTED — a reachable-but-slow
+        # server (review finding #2) passes that probe then hangs generation.
+        # Bound a 1-token generation instead: if it can't answer quickly,
+        # skip the suite rather than fail verdict assertions.
+        _probe = urllib.request.Request(
+            cm._DEFAULTS["ollama_url"].rstrip("/") + "/api/generate",
+            data=_json.dumps({"model": cm._DEFAULTS["model"],
+                              "prompt": "ping", "stream": False,
+                              "options": {"num_predict": 1}}).encode(),
+            headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(_probe, timeout=15) as r:
+                r.read()
+        except Exception:
+            _spec_ok = False
 except Exception:
     _spec_ok = False
 
 
-@unittest.skipUnless(_spec_ok, "Ollama not reachable or model not pulled")
+@unittest.skipUnless(_LIVE_ENABLED and _spec_ok,
+                     "opt-in: export HERMES_CLASSIFIER_LIVE=1 "
+                     "(plus Ollama reachable and model present)")
 class TestLiveVerdicts(unittest.TestCase):
     CASES = [
         # (command, expected verdict via full pipeline)

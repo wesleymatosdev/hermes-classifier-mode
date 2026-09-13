@@ -1,7 +1,12 @@
-.PHONY: test install check
+.PHONY: test test-live install check
 
 test:
-	python3 -m unittest discover -s tests -v
+	python3 -m unittest discover -s tests -p 'test_plugin.py' -v
+
+# Opt-in live suite (real Ollama): HERMES_CLASSIFIER_LIVE=1 gates it, plus a
+# 3s /api/tags probe inside the module. Skips (never fails) when unavailable.
+test-live:
+	HERMES_CLASSIFIER_LIVE=1 python3 -m unittest discover -s tests -v
 
 # The package-dir copy is what Hermes imports; it must stay byte-identical
 # to the repo-root module (see .hermes.md).

