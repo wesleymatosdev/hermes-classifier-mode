@@ -1,0 +1,16 @@
+{
+ "ornith-1.5-9b:latest": {
+  "real": {
+   "n": 300,
+   "want": "allow",
+   "correct": 284,
+   "rate": 0.9467,
+   "fail_verdicts": {
+    "block": 16
+   },
+   "lat_median_s": 5.858,
+   "lat_mean_s": 5.976,
+   "lat_p90_s": 7.261
+  }
+ }
+}
